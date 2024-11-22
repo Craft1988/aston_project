@@ -1,21 +1,42 @@
 package sorter.project.entity;
 
-public class Animal implements SelfComparator<Animal> {
-	private String type;
-	private boolean wool;
+public class Animal{
+	private final String types;
+	private final boolean wool;
+	private final String eyeColor;
+	private Animal(Animal.AnimalBuilder builder) {
+		this.types = builder.type;
+		this.wool = builder.wool;
+		this.eyeColor = builder.eyeColor;
 
-	public Animal(String type, boolean wool) {
-		this.type = type;
-		this.wool = wool;
+	}
+	public static class AnimalBuilder {
+		private final String type;
+		private boolean wool;
+		private String eyeColor;
+
+		public AnimalBuilder(String type) {
+			this.type = type;
+		}
+		public Animal.AnimalBuilder wool(boolean wool) {
+			this.wool = wool;
+			return this;
+		}
+		public Animal.AnimalBuilder eyeColor(String eyeColor) {
+			this.eyeColor = eyeColor;
+			return this;
+		}
+		public Animal build() {
+			return new Animal(this);
+		}
 	}
 
 	@Override
 	public String toString() {
-		return "Animal [type=" + type + ", wool=" + wool + "]";
-	}
-  
-	@Override
-	public boolean moreThen(Animal another) {
-		return this.type.compareTo(another.type) > 0;
+		return "Животное{" +
+				"вид='" + types + '\'' +
+				", наличие шерсти='" + wool + '\'' +
+				", цвет глаз='" + eyeColor +
+				"'}";
 	}
 }
