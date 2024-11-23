@@ -17,45 +17,22 @@ public class FillFromRandom {
     static AnimalEyeColor[] animalEyeColors = AnimalEyeColor.values();
     static StoredMaterial[] storedMaterial = StoredMaterial.values();
     static Materials[] materials = Materials.values();
+    static List list=new ArrayList<>();
 
 
 
     public static List random(int count, String type){
-        List<Object> list =new ArrayList<>();
         switch (type){
             case "Man": {
-                for(int i=0;i<count;i++){
-                    String gender = randomGender();
-                    String lastName =randomLastName(gender);
-                    Man man= new Man.ManBuilder(lastName)
-                            .age(rand.nextInt(70))
-                            .gender(gender)
-                            .build();
-                    list.add(man);
-                }
+                list=createMan(count);
                 break;
             }
             case "Animal":{
-                for(int i=0;i<count;i++){
-                    boolean wool = rand.nextBoolean();
-                    String types =randomTypeOfAnimal(wool);
-                    Animal animal= new Animal.AnimalBuilder(types)
-                            .wool(wool)
-                            .eyeColor(animalEyeColors[rand.nextInt(animalEyeColors.length)].toString())
-                            .build();
-                    list.add(animal);
-                }
+                list=createAnimal(count);
                 break;
             }
             case "Barrel":{
-                for(int i=0;i<count;i++){
-
-                    Barrel barrel= new Barrel.BarrelBuilder(rand.nextFloat(100))
-                            .storedMaterial(storedMaterial[rand.nextInt(storedMaterial.length)].toString())
-                            .material(materials[rand.nextInt(materials.length)].toString())
-                            .build();
-                    list.add(barrel);
-                }
+                list=createBarrel(count);
                 break;
             }
             default:
@@ -76,6 +53,44 @@ public class FillFromRandom {
     public static String randomTypeOfAnimal(boolean wool){
         if(wool){ return "зверь";        }
         return animalWithoutWools[rand.nextInt(animalWithoutWools.length)].toString();
+    }
+    public static List createAnimal(int count){
+        List<Object> list =new ArrayList<>();
+        for(int i=0;i<count;i++){
+            boolean wool = rand.nextBoolean();
+            String types =randomTypeOfAnimal(wool);
+            Animal animal= new Animal.AnimalBuilder(types)
+                    .wool(wool)
+                    .eyeColor(animalEyeColors[rand.nextInt(animalEyeColors.length)].toString())
+                    .build();
+            list.add(animal);
+        }
+        return list;
+    }
+    public static List createMan(int count){
+        List<Object> list =new ArrayList<>();
+        for(int i=0;i<count;i++){
+            String gender = randomGender();
+            String lastName =randomLastName(gender);
+            Man man= new Man.ManBuilder(lastName)
+                    .age(rand.nextInt(70))
+                    .gender(gender)
+                    .build();
+            list.add(man);
+        }
+        return list;
+    }
+    public static List createBarrel(int count){
+        List<Object> list =new ArrayList<>();
+        for(int i=0;i<count;i++){
+
+            Barrel barrel= new Barrel.BarrelBuilder(rand.nextFloat(100))
+                    .storedMaterial(storedMaterial[rand.nextInt(storedMaterial.length)].toString())
+                    .material(materials[rand.nextInt(materials.length)].toString())
+                    .build();
+            list.add(barrel);
+        }
+        return list;
     }
 
 }
