@@ -9,6 +9,7 @@ import java.util.List;
 import sorter.project.entity.Animal;
 import sorter.project.entity.Barrel;
 import sorter.project.entity.Man;
+import sorter.project.object_addition.FillFromFile;
 import sorter.project.object_addition.FillFromRandom;
 import sorter.project.utils.Sorter;
 
@@ -42,7 +43,18 @@ public class MainClass {
 		for(Barrel a:barrels){
 			System.out.println(a.toString());
 		}
-
+		List<Animal> animals1= FillFromFile.file(39,"Animal");
+		for(Animal a:animals1){
+			System.out.println(a.toString());
+		}
+		List<Man> mens1= FillFromFile.file(39,"Man");
+		for(Man a:mens1){
+			System.out.println(a.toString());
+		}
+		List<Barrel> barrels1= FillFromFile.file(39,"Barrel");
+		for(Barrel a:barrels1){
+			System.out.println(a.toString());
+		}
 
 	}
 }

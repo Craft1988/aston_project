@@ -83,7 +83,6 @@ public class FillFromRandom {
     public static List createBarrel(int count){
         List<Object> list =new ArrayList<>();
         for(int i=0;i<count;i++){
-
             Barrel barrel= new Barrel.BarrelBuilder(rand.nextFloat(100))
                     .storedMaterial(storedMaterial[rand.nextInt(storedMaterial.length)].toString())
                     .material(materials[rand.nextInt(materials.length)].toString())
