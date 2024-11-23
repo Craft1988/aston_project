@@ -1,5 +1,5 @@
 package sorter.project.entity;
 
-public interface SelfComparator <T>{
-	boolean moreThen(T another);
+public interface SelfComparator<T> {
+    boolean moreThen(T another);
 }
