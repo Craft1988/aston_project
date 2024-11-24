@@ -9,30 +9,30 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class FillFromRandom {
-    static Random rand =new Random();
-    static MenLastName[] menLastName = MenLastName.values();
-    static WomenLastName[] womenLastName = WomenLastName.values();
-    static AnimalWithoutWool[] animalWithoutWools = AnimalWithoutWool.values();
-    static AnimalEyeColor[] animalEyeColors = AnimalEyeColor.values();
-    static StoredMaterial[] storedMaterial = StoredMaterial.values();
-    static Materials[] materials = Materials.values();
-    static List list=new ArrayList<>();
+public final class FillFromRandom {
+    private final static Random rand = new Random();
+    private final static MenLastName[] menLastName = MenLastName.values();
+    private final static WomenLastName[] womenLastName = WomenLastName.values();
+    private final static AnimalWithoutWool[] animalWithoutWools = AnimalWithoutWool.values();
+    private final static AnimalWithWool[] animalWithWools = AnimalWithWool.values();
+    private final static AnimalEyeColor[] animalEyeColors = AnimalEyeColor.values();
+    private final static StoredMaterial[] storedMaterial = StoredMaterial.values();
+    private final static Materials[] materials = Materials.values();
+    private static List list = new ArrayList<>();
 
 
-
-    public static List random(int count, String type){
-        switch (type){
+    public static List random(int count, String type) {
+        switch (type) {
             case "Man": {
-                list=createMan(count);
+                list = createMan(count);
                 break;
             }
-            case "Animal":{
-                list=createAnimal(count);
+            case "Animal": {
+                list = createAnimal(count);
                 break;
             }
-            case "Barrel":{
-                list=createBarrel(count);
+            case "Barrel": {
+                list = createBarrel(count);
                 break;
             }
             default:
@@ -40,26 +40,32 @@ public class FillFromRandom {
         }
         return list;
     }
-    public static String randomGender(){
-        if(rand.nextInt(3)>1) return "man";
-        return "women";
+
+    private static String randomGender() {
+        if (rand.nextInt(3) > 1) return "man";
+        return "woman";
     }
-    public static String randomLastName(String gender){
-        if(gender.equals("man")){
+
+    private static String randomLastName(String gender) {
+        if (gender.equals("man")) {
             return menLastName[rand.nextInt(menLastName.length)].toString();
         }
         return womenLastName[rand.nextInt(womenLastName.length)].toString();
     }
-    public static String randomTypeOfAnimal(boolean wool){
-        if(wool){ return "зверь";        }
+
+    private static String randomTypeOfAnimal(boolean wool) {
+        if (wool) {
+            return animalWithWools[rand.nextInt(animalWithWools.length)].toString();
+        }
         return animalWithoutWools[rand.nextInt(animalWithoutWools.length)].toString();
     }
-    public static List createAnimal(int count){
-        List<Object> list =new ArrayList<>();
-        for(int i=0;i<count;i++){
+
+    private static List createAnimal(int count) {
+        List<Object> list = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
             boolean wool = rand.nextBoolean();
-            String types =randomTypeOfAnimal(wool);
-            Animal animal= new Animal.AnimalBuilder(types)
+            String types = randomTypeOfAnimal(wool);
+            Animal animal = new Animal.AnimalBuilder(types)
                     .wool(wool)
                     .eyeColor(animalEyeColors[rand.nextInt(animalEyeColors.length)].toString())
                     .build();
@@ -67,12 +73,13 @@ public class FillFromRandom {
         }
         return list;
     }
-    public static List createMan(int count){
-        List<Object> list =new ArrayList<>();
-        for(int i=0;i<count;i++){
+
+    private static List createMan(int count) {
+        List<Object> list = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
             String gender = randomGender();
-            String lastName =randomLastName(gender);
-            Man man= new Man.ManBuilder(lastName)
+            String lastName = randomLastName(gender);
+            Man man = new Man.ManBuilder(lastName)
                     .age(rand.nextInt(70))
                     .gender(gender)
                     .build();
@@ -80,10 +87,11 @@ public class FillFromRandom {
         }
         return list;
     }
-    public static List createBarrel(int count){
-        List<Object> list =new ArrayList<>();
-        for(int i=0;i<count;i++){
-            Barrel barrel= new Barrel.BarrelBuilder(rand.nextFloat(100))
+
+    private static List createBarrel(int count) {
+        List<Object> list = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            Barrel barrel = new Barrel.BarrelBuilder(rand.nextFloat(100))
                     .storedMaterial(storedMaterial[rand.nextInt(storedMaterial.length)].toString())
                     .material(materials[rand.nextInt(materials.length)].toString())
                     .build();
