@@ -1,10 +1,13 @@
 package sorter.project;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import sorter.project.entity.Animal;
 import sorter.project.entity.Barrel;
+import sorter.project.entity.Human;
 import sorter.project.utils.Sorter;
 
 public class MainClass {
@@ -23,16 +26,7 @@ public class MainClass {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    Animal[] animals = {new Animal("Herbivore", true), new Animal("Pet", true), new Animal("Wild", false),
-                            new Animal("Predator", true), new Animal("Any", true)};
-                    Barrel[] barrels = {new Barrel(5.0f, "Wine", "Wooden"), new Barrel(2.0f, "Oil", "Plastic"),
-                            new Barrel(1.5f, "Beer", "Metall")};
-                    Sorter.sortAnyCustomClass(animals);
-                    System.out.println(Arrays.toString(animals));
-                    Sorter.sortAnyCustomClass(barrels);
-                    System.out.println(Arrays.toString(barrels));
-                    Animal an = animals[4];
-                    System.out.println(Sorter.binarySearch(an, animals));
+                    System.out.println(23);
                     break;
                 case 2:
                     break;
@@ -47,14 +41,7 @@ public class MainClass {
                     System.out.println("Неверный выбор!");
             }
         }
-    }
-    public static void main(String[] args) {
-        // тестим создание объекта билдером
-        Animal animal = new Animal.AnimalBuilder("Bird", "Black", false).build();
-        Barrel barrel = new Barrel.BarrelBuilder(1.1, "Gold", "Iron").build();
-        Human human = new Human.HumanBuilder("men", 55, "Tarantino").build();
-        System.out.println(animal);
-        System.out.println(barrel);
-        System.out.println(human);
+
+
     }
 }
