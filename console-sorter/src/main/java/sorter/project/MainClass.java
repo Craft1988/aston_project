@@ -1,87 +1,35 @@
 package sorter.project;
 
-import java.util.ArrayList;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Collections;
-import java.util.List;
 
-import sorter.project.entity.Animal;
-import sorter.project.entity.Barrel;
-import sorter.project.entity.Human;
-import sorter.project.entity.Man;
+import java.util.Scanner;
+
+import sorter.project.entity.WorkingCollection;
 import sorter.project.object_addition.FillFromConsole;
 import sorter.project.object_addition.FillFromFile;
 import sorter.project.object_addition.FillFromRandom;
-import sorter.project.utils.Sorter;
+
 
 public class MainClass {
+    static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+
 
         while (true) {
             System.out.println("Выберите действие:");
-            System.out.println("1. Заполнить массив");
-            System.out.println("2. Сортировать массив");
+            System.out.println("1. Заполнить коллекцию");
+            System.out.println("2. Сортировать коллекцию");
             System.out.println("3. Найти элемент");
             System.out.println("4. Записать в файл");
-            System.out.println("5. Выход");
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-//		Animal[] animals = { new Animal("Herbivore", true), new Animal("Pet", true), new Animal("Wild", false),
-//				new Animal("Predator", true), new Animal("Any", true) };
-//		Barrel[] barrels = { new Barrel(5.0f, "Wine", "Wooden"), new Barrel(2.0f, "Oil", "Plastic"),
-//				new Barrel(1.5f, "Beer", "Metall") };
-//
-//		Sorter.sortAnyCustomClass(animals);
-//		System.out.println(Arrays.toString(animals));
-//		Sorter.sortAnyCustomClass(barrels);
-//		System.out.println(Arrays.toString(barrels));
-//		Animal an = animals[4];
-//		System.out.println(Sorter.binarySearch(an, animals));
-//		List<Animal> animals = new ArrayList<>();
-//		List<Man> men =new ArrayList<>();
-//		List<Barrel> barrels = new ArrayList<>();
-//		animals=FillFromRandom.random(20,"Animal");
-//		men=FillFromRandom.random(20,"Man");
-//		barrels=FillFromRandom.random(20,"Barrel");
-////		for(Animal a:animals){
-////			System.out.println(a.toString());
-////		}
-////		for(Man a:men){
-////			System.out.println(a.toString());
-////		}
-////		for(Barrel a:barrels){
-////			System.out.println(a.toString());
-////		}
-//		System.out.println("\ncreate\n");
-//		List<Animal> animals1= FillFromFile.fill(39,"Animal");
-//		System.out.println("\nprint\n");
-//		for(Animal a:animals1){
-//			System.out.println(a.toString());
-//		}
-//		System.out.println("\ncreate\n");
-//		List<Man> mens1= FillFromFile.fill(39,"Man");
-//		System.out.println("\nprint\n");
-//		for(Man a:mens1){
-//			System.out.println(a.toString());
-//		}
-//		System.out.println("\ncreate\n");
-//		List<Barrel> barrels1= FillFromFile.fill(39,"Barrel");
-//		System.out.println("\nprint\n");
-//		for(Barrel a:barrels1){
-//			System.out.println(a.toString());
-//		}
+            System.out.println("5. Вывести в консоль");
+            System.out.println("6. Выход");
 
+            // TODO Auto-generated method stub
 
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    System.out.println(23);
+                    fillingNewOrOld();
                     break;
                 case 2:
                     break;
@@ -90,6 +38,11 @@ public class MainClass {
                 case 4:
                     break;
                 case 5:
+                    for (Object o : WorkingCollection.addedCollection()) {
+                        System.out.println(o.toString());
+                    }
+                    break;
+                case 6:
                     System.exit(0);
                     break;
                 default:
@@ -99,27 +52,81 @@ public class MainClass {
 
 
     }
-}
-        List<Animal> animals3 = new ArrayList<>();
-        List example = FillFromConsole.fill("Animal");
-        for(int i =0; i<example.size();i++){
-            animals3.add((Animal) example.get(i));
-        }
-//        List<Man> men3 = new ArrayList<>();
-//        List<Barrel> barrels3 = new ArrayList<>();
 
-//        for (Barrel a : barrels3) {
-//			System.out.println(a.toString());
-//		}
-//
-//        for (Man a : men3) {
-//			System.out.println(a.toString());
-//		}
-
-        for (Animal a : animals3) {
-			System.out.println(a.toString());
-		}
-
-
+    private static void fillingNewOrOld() {
+        System.out.println("Выберите действие:");
+        System.out.println("1. Заполнить новую коллекцию");
+        System.out.println("2. Заполнить существующую коллекцию");
+        System.out.println("3. На главную");
+        int choice = scanner.nextInt();
+        switch (choice) {
+            case 1:
+                if (WorkingCollection.addedCollection() != null) {
+                    WorkingCollection.deleteColection();
                 }
+                filling(choice);
+                break;
+            case 2:
+                filling(choice);
+                break;
+            case 3:
+
+                break;
+            default:
+                System.out.println("Неверный выбор!");
+        }
+
+    }
+
+    private static void filling(int lastChoice) {
+            System.out.println("Выберите действие:");
+            System.out.println("1. Заполнить объектами Human");
+            System.out.println("2. Заполнить объектами Animal");
+            System.out.println("3. Заполнить объектами Barrel");
+            System.out.println("4. На главную");
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    fillingType("Human");
+                    break;
+                case 2:
+                    fillingType("Animal");
+                    break;
+                case 3:
+                    fillingType("Barrel");
+                    break;
+                case 4:
+                    break;
+                default:
+                    System.out.println("Неверный выбор!");
             }
+    }
+
+    private static void fillingType(String lastChoice) {
+            System.out.println("Выберите действие:");
+            System.out.println("1. Заполнить из консоли");
+            System.out.println("2. Заполнить из файла");
+            System.out.println("3. Заполнить случайными значениями");
+            System.out.println("4. На главную");
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    WorkingCollection.addInCollection(FillFromConsole.fill(lastChoice));
+                    break;
+                case 2:
+                    System.out.println("Введите количество считываемых строк:");
+                    int choiceCountFile = scanner.nextInt();
+                    WorkingCollection.addInCollection(FillFromFile.fill(choiceCountFile, lastChoice));
+                    break;
+                case 3:
+                    System.out.println("Введите количество генерируемых объектов:");
+                    int choiceCountRandom = scanner.nextInt();
+                    WorkingCollection.addInCollection(FillFromRandom.fill(choiceCountRandom, lastChoice));
+                    break;
+                case 4:
+                    break;
+                default:
+                    System.out.println("Неверный выбор!");
+            }
+    }
+}

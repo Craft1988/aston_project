@@ -2,16 +2,15 @@ package sorter.project.object_addition;
 
 import sorter.project.entity.Animal;
 import sorter.project.entity.Barrel;
-import sorter.project.entity.Man;
+import sorter.project.entity.Human;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class FillFromFile {
+public final class FillFromFile implements Fill {
     private static List list = new ArrayList<>();
 
     private FillFromFile() {
@@ -20,11 +19,11 @@ public final class FillFromFile {
 
     public static List fill(int count, String type) {
         switch (type) {
-            case "Man": {
+            case "Human": {
                 try {
                     list = createMan(count);
                 } catch (IOException e) {
-                    System.out.println("ошибка111");
+                    System.out.println("ошибка файла");
                 }
                 break;
             }
@@ -32,7 +31,7 @@ public final class FillFromFile {
                 try {
                     list = createAnimal(count);
                 } catch (IOException e) {
-                    System.out.println("ошибка222");
+                    System.out.println("ошибка файла");
                 }
                 break;
             }
@@ -40,7 +39,7 @@ public final class FillFromFile {
                 try {
                     list = createBarrel(count);
                 } catch (IOException e) {
-                    System.out.println("ошибка333");
+                    System.out.println("ошибка файла");
                 }
                 break;
             }
@@ -64,12 +63,9 @@ public final class FillFromFile {
                     String types = lines.get(i).substring(0, first);
                     boolean wool = Boolean.parseBoolean(lines.get(i).substring(first + 1, second));
                     String eyeColor = lines.get(i).substring(second);
-                    Animal animal = new Animal.AnimalBuilder(types)
-                            .wool(wool)
-                            .eyeColor(eyeColor)
-                            .build();
+                    Animal animal = new Animal.AnimalBuilder(types, eyeColor, wool).build();
                     list.add(animal);
-                }else {
+                } else {
                     System.out.println("Ошибка валидации2");
                     countOfError++;
                 }
@@ -77,7 +73,6 @@ public final class FillFromFile {
                 System.out.println("Ошибка валидации");
                 countOfError++;
             }
-
         }
         System.out.println("Ошибок валидации: " + countOfError);
         return list;
@@ -97,12 +92,9 @@ public final class FillFromFile {
                     String lastName = lines.get(i).substring(0, first);
                     int age = Integer.parseInt(lines.get(i).substring(first + 1, second));
                     String gender = lines.get(i).substring(second);
-                    Man man = new Man.ManBuilder(lastName)
-                            .age(age)
-                            .gender(gender)
-                            .build();
+                    Human man = new Human.HumanBuilder(gender, age, lastName).build();
                     list.add(man);
-                }else {
+                } else {
                     System.out.println("Ошибка валидации2");
                     countOfError++;
                 }
@@ -110,7 +102,6 @@ public final class FillFromFile {
                 System.out.println("Ошибка валидации");
                 countOfError++;
             }
-
         }
         System.out.println("Ошибок валидации: " + countOfError);
         return list;
@@ -130,12 +121,9 @@ public final class FillFromFile {
                     float volume = Float.parseFloat(lines.get(i).substring(0, first));
                     String material = lines.get(i).substring(first + 1, second);
                     String storedMaterial = lines.get(i).substring(second);
-                    Barrel barrel = new Barrel.BarrelBuilder(volume)
-                            .storedMaterial(storedMaterial)
-                            .material(material)
-                            .build();
+                    Barrel barrel = new Barrel.BarrelBuilder(volume, storedMaterial, material).build();
                     list.add(barrel);
-                }else {
+                } else {
                     System.out.println("Ошибка валидации2");
                     countOfError++;
                 }
@@ -143,12 +131,8 @@ public final class FillFromFile {
                 System.out.println("Ошибка валидации");
                 countOfError++;
             }
-
         }
         System.out.println("Ошибок валидации: " + countOfError);
         return list;
-
     }
-
-
 }

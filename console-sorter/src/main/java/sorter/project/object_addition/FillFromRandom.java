@@ -2,14 +2,13 @@ package sorter.project.object_addition;
 
 import sorter.project.entity.Animal;
 import sorter.project.entity.Barrel;
-import sorter.project.entity.Man;
+import sorter.project.entity.Human;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public final class FillFromRandom {
+public final class FillFromRandom implements Fill {
     private final static Random rand = new Random();
     private final static MenLastName[] menLastName = MenLastName.values();
     private final static WomenLastName[] womenLastName = WomenLastName.values();
@@ -21,9 +20,9 @@ public final class FillFromRandom {
     private static List list = new ArrayList<>();
 
 
-    public static List random(int count, String type) {
+    public static List fill(int count, String type) {
         switch (type) {
-            case "Man": {
+            case "Human": {
                 list = createMan(count);
                 break;
             }
@@ -65,9 +64,7 @@ public final class FillFromRandom {
         for (int i = 0; i < count; i++) {
             boolean wool = rand.nextBoolean();
             String types = randomTypeOfAnimal(wool);
-            Animal animal = new Animal.AnimalBuilder(types)
-                    .wool(wool)
-                    .eyeColor(animalEyeColors[rand.nextInt(animalEyeColors.length)].toString())
+            Animal animal = new Animal.AnimalBuilder(types, animalEyeColors[rand.nextInt(animalEyeColors.length)].toString(), wool)
                     .build();
             list.add(animal);
         }
@@ -79,10 +76,7 @@ public final class FillFromRandom {
         for (int i = 0; i < count; i++) {
             String gender = randomGender();
             String lastName = randomLastName(gender);
-            Man man = new Man.ManBuilder(lastName)
-                    .age(rand.nextInt(70))
-                    .gender(gender)
-                    .build();
+            Human man = new Human.HumanBuilder(gender, rand.nextInt(70), lastName).build();
             list.add(man);
         }
         return list;
@@ -91,13 +85,12 @@ public final class FillFromRandom {
     private static List createBarrel(int count) {
         List<Object> list = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            Barrel barrel = new Barrel.BarrelBuilder(rand.nextFloat(100))
-                    .storedMaterial(storedMaterial[rand.nextInt(storedMaterial.length)].toString())
-                    .material(materials[rand.nextInt(materials.length)].toString())
+            Barrel barrel = new Barrel.BarrelBuilder(rand.nextFloat(100),
+                    storedMaterial[rand.nextInt(storedMaterial.length)].toString(),
+                    materials[rand.nextInt(materials.length)].toString())
                     .build();
             list.add(barrel);
         }
         return list;
     }
-
 }

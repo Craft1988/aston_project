@@ -41,9 +41,7 @@ public final class Validation {
                     }
                 }
                 return n;
-
             }
-
         }
         return false;
     }
@@ -57,7 +55,7 @@ public final class Validation {
             if (line.indexOf(".", 0, first) != -1) {
                 indexOfPoint = line.indexOf('.', 0, first);
                 for (int i = 0; i < first; i++) {
-                    if (i==indexOfPoint) continue;
+                    if (i == indexOfPoint) continue;
                     if (Character.isDigit(line.charAt(i))) {
                         n = true;
                     } else {
@@ -66,7 +64,6 @@ public final class Validation {
                 }
             }
             return n;
-
         }
         return false;
     }
