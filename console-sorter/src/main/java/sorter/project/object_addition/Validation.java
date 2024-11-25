@@ -52,8 +52,8 @@ public final class Validation {
         if (Character.isUpperCase(line.charAt(first + 1)) && Character.isUpperCase(line.charAt(second + 1))) {
             boolean n = false;
             int indexOfPoint;
-            if (line.indexOf(".", 0, first) != -1) {
-                indexOfPoint = line.indexOf('.', 0, first);
+            if (line.indexOf(".", 0 /*,first*/) != -1) {
+                indexOfPoint = line.indexOf('.', 0/*, first*/);
                 for (int i = 0; i < first; i++) {
                     if (i == indexOfPoint) continue;
                     if (Character.isDigit(line.charAt(i))) {
