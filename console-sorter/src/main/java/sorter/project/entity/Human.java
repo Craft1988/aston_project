@@ -5,7 +5,7 @@ import java.util.Comparator;
 import sorter.project.service.interfaces.Autobuilder;
 
 public class Human {
-    private static Comparator<Human> comparator = (h1, h2) -> h1.age - h2.age;
+    private static Comparator<Human> comparator = Comparator.comparingInt(h -> h.age);
     private String sex;
     private int age;
     private String surname;

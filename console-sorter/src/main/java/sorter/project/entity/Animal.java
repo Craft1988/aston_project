@@ -5,7 +5,7 @@ import java.util.Comparator;
 import sorter.project.service.interfaces.Autobuilder;
 
 public class Animal {
-    private static Comparator<Animal> comparator = (a1, a2) -> a1.type.compareTo(a2.type);
+    private static Comparator<Animal> comparator = Comparator.comparing(a -> a.type);
     private String type;
     private String eyeColor;
     private boolean wool;
