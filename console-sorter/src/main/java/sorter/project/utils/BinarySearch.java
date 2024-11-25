@@ -3,7 +3,7 @@ package sorter.project.utils;
 import java.util.Comparator;
 import java.util.List;
 
-public class BinarySearch<T> {
+public final class BinarySearch<T> {
     public int search(List<T> items, T target, Comparator<T> comparator) {
         int left = 0, right = items.size() - 1;
         while (left <= right) {
