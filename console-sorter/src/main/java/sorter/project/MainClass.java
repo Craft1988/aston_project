@@ -2,6 +2,7 @@ package sorter.project;
 
 import java.util.Scanner;
 
+import sorter.project.controller.BinarySearchController;
 import sorter.project.controller.SortTheCollectionController;
 import sorter.project.entity.WorkingCollection;
 import static sorter.project.controller.FillingInCollectionsController.fillingNewOrOld;
@@ -25,9 +26,10 @@ public class MainClass {
                     fillingNewOrOld();
                     break;
                 case 2:
-//                    SortTheCollectionController.sortTheCollection();
+                    SortTheCollectionController.sortTheCollection();
                     break;
                 case 3:
+                    BinarySearchController.binarySearch();
                     break;
                 case 4:
                     break;
