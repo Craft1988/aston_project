@@ -1,4 +1,4 @@
-package sorter.project.object_addition;
+package sorter.project.entity.enums;
 
 public enum Materials {
     Пластик,

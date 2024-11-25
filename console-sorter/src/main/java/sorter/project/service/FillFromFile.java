@@ -1,8 +1,10 @@
-package sorter.project.object_addition;
+package sorter.project.service;
 
 import sorter.project.entity.Animal;
 import sorter.project.entity.Barrel;
 import sorter.project.entity.Human;
+import sorter.project.service.interfaces.Fill;
+import sorter.project.utils.Validation;
 
 import java.io.IOException;
 import java.nio.file.Files;

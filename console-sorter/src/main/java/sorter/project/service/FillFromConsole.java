@@ -1,20 +1,24 @@
-package sorter.project.object_addition;
+package sorter.project.service;
 
 import sorter.project.entity.Animal;
 import sorter.project.entity.Barrel;
 import sorter.project.entity.Human;
+import sorter.project.service.interfaces.Fill;
+import sorter.project.utils.Validation;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class FillFromConsole implements Fill {
-    static List list = new ArrayList<>();
+
     private static Scanner console = new Scanner(System.in);
 
     private FillFromConsole() {
         throw new UnsupportedOperationException();
     }
+
+    static List list = new ArrayList<>();
 
     public static List fill(String type) {
         System.out.println("Для завершения введите \"exit\"");
