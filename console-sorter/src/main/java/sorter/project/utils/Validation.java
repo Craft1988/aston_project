@@ -7,7 +7,7 @@ public final class Validation {
 
     public static boolean generalValidation(String line) {
         int first;
-        if (line.indexOf(" ") != -1) {
+        if (line.contains(" ")) {
             first = line.indexOf(" ");
         } else return false;
         int second = line.indexOf(" ", first);
@@ -25,33 +25,61 @@ public final class Validation {
     }
 
     public static boolean manValidation(String line) {
-        int first = line.indexOf(" ");
-        int second = line.indexOf(" ", first + 1);
-        if (Character.isUpperCase(line.charAt(0))) {
-            if (line.substring(second + 1)
-                    .equals("man") || line.substring(second + 1).equals("woman")) {
-                boolean n = false;
-                for (int i = first + 1; i < second; i++) {
-                    if (Character.isDigit(line.charAt(i))) {
-                        n = true;
-                    } else {
-                        return false;
-                    }
-                }
-                return n;
-            }
+        if (line == null || line.trim().isEmpty()) {
+            return false;
         }
-        return false;
+        int first = line.indexOf(" ");
+        if (first == -1) {
+            return false;
+        }
+        int second = line.indexOf(" ", first + 1);
+        if (second == -1) {
+            return false;
+        }
+        if (!Character.isUpperCase(line.charAt(0))) {
+            return false;
+        }
+        String gender = line.substring(second + 1).trim();
+        if (!gender.equals("man") && !gender.equals("woman")) {
+            return false;
+        }
+        String ageStr = line.substring(first + 1, second).trim();
+        int age;
+        try {
+            age = Integer.parseInt(ageStr);
+            if (age < 0 || age > 120) {
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+        return true;
     }
 
+
     public static boolean barrelValidation(String line) {
+        if (line == null || line.trim().isEmpty()) {
+            return false;
+        }
+
         int first = line.indexOf(" ");
         int second = line.indexOf(" ", first + 1);
+
+        if (first == -1 || second == -1) {
+            return false;
+        }
         if (Character.isUpperCase(line.charAt(first + 1)) && Character.isUpperCase(line.charAt(second + 1))) {
             boolean n = false;
-            int indexOfPoint;
-            if (line.indexOf(".", 0 /*,first*/) != -1) {
-                indexOfPoint = line.indexOf('.', 0/*, first*/);
+            int indexOfPoint = line.indexOf('.', 0);
+
+            try {
+                String volumeStr = line.substring(0, first).replace(".", "").trim();
+                int volume = Integer.parseInt(volumeStr);
+                if (volume < 0) {
+                    return false;
+                }
+
                 for (int i = 0; i < first; i++) {
                     if (i == indexOfPoint) continue;
                     if (Character.isDigit(line.charAt(i))) {
@@ -60,9 +88,15 @@ public final class Validation {
                         return false;
                     }
                 }
+            } catch (NumberFormatException e) {
+                return false;
             }
+
             return n;
         }
+
         return false;
     }
+
+
 }
