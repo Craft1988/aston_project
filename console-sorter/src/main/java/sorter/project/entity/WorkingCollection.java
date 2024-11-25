@@ -27,6 +27,9 @@
 
 package sorter.project.entity;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,5 +53,19 @@ public class WorkingCollection {
 
     public static List addedCollection() {
         return list;
+    }
+
+    public static void saveCollectionToFile(String filename) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+            for (Object item : list) {
+                writer.write(item.toString());
+                writer.newLine();
+            }
+            System.out.println("Коллекция успешно сохранена в файл: " + filename);
+        } catch (IOException e) {
+            System.err.println("Ошибка при сохранении коллекции в файл: " + e.getMessage());
+        }
+
+
     }
 }

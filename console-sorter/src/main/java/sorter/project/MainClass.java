@@ -2,10 +2,11 @@ package sorter.project;
 
 import java.util.Scanner;
 
-import sorter.project.controller.BinarySearchController;
-import sorter.project.controller.SortTheCollectionController;
+//import sorter.project.controller.BinarySearchController;
+//import sorter.project.controller.SortTheCollectionController;
+import sorter.project.controller.FilesController;
+import sorter.project.controller.FillingInCollectionsController;
 import sorter.project.entity.WorkingCollection;
-import static sorter.project.controller.FillingInCollectionsController.fillingNewOrOld;
 
 public class MainClass {
     static Scanner scanner = new Scanner(System.in);
@@ -23,15 +24,16 @@ public class MainClass {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    fillingNewOrOld();
+                    FillingInCollectionsController.fillingNewOrOld();
                     break;
                 case 2:
-                    SortTheCollectionController.sortTheCollection();
+//                    SortTheCollectionController.sortTheCollection();
                     break;
                 case 3:
-                    BinarySearchController.binarySearch();
+//                    BinarySearchController.binarySearch();
                     break;
                 case 4:
+                    FilesController.fileEntry();
                     break;
                 case 5:
                     for (Object o : WorkingCollection.addedCollection()) {
