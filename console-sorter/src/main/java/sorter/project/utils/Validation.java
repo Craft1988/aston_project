@@ -1,8 +1,4 @@
-package sorter.project.object_addition;
-
-import sorter.project.entity.Animal;
-
-import static java.lang.Integer.*;
+package sorter.project.utils;
 
 public final class Validation {
     private Validation() {
@@ -22,7 +18,8 @@ public final class Validation {
         int first = line.indexOf(" ");
         int second = line.indexOf(" ", first + 1);
         if (Character.isUpperCase(line.charAt(0)) && Character.isUpperCase(line.charAt(second + 1))) {
-            return line.substring(first + 1, second).equals("true") || line.substring(first + 1, second).equals("false");
+            return line.substring(first + 1, second)
+                    .equals("true") || line.substring(first + 1, second).equals("false");
         }
         return false;
     }
@@ -31,7 +28,8 @@ public final class Validation {
         int first = line.indexOf(" ");
         int second = line.indexOf(" ", first + 1);
         if (Character.isUpperCase(line.charAt(0))) {
-            if (line.substring(second + 1).equals("man") || line.substring(second + 1).equals("woman")) {
+            if (line.substring(second + 1)
+                    .equals("man") || line.substring(second + 1).equals("woman")) {
                 boolean n = false;
                 for (int i = first + 1; i < second; i++) {
                     if (Character.isDigit(line.charAt(i))) {

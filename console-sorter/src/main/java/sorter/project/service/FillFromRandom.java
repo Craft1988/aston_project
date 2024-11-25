@@ -1,8 +1,16 @@
-package sorter.project.object_addition;
+package sorter.project.service;
 
 import sorter.project.entity.Animal;
 import sorter.project.entity.Barrel;
 import sorter.project.entity.Human;
+import sorter.project.entity.enums.AnimalEyeColor;
+import sorter.project.entity.enums.AnimalWithWool;
+import sorter.project.entity.enums.AnimalWithoutWool;
+import sorter.project.entity.enums.Materials;
+import sorter.project.entity.enums.MenLastName;
+import sorter.project.entity.enums.StoredMaterial;
+import sorter.project.entity.enums.WomenLastName;
+import sorter.project.service.interfaces.Fill;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +72,8 @@ public final class FillFromRandom implements Fill {
         for (int i = 0; i < count; i++) {
             boolean wool = rand.nextBoolean();
             String types = randomTypeOfAnimal(wool);
-            Animal animal = new Animal.AnimalBuilder(types, animalEyeColors[rand.nextInt(animalEyeColors.length)].toString(), wool)
+            Animal animal = new Animal.AnimalBuilder(types, animalEyeColors[rand.nextInt(animalEyeColors.length)]
+                    .toString(), wool)
                     .build();
             list.add(animal);
         }
