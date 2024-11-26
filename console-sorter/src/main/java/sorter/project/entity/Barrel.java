@@ -16,6 +16,7 @@ public class Barrel implements Comparable<Barrel> {
         private double volume;
         private String storedMaterial;
         private String material;
+
         public BarrelBuilder(double volume) {
             this.volume = volume;
         }

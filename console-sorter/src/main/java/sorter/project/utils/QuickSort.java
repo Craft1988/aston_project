@@ -1,37 +1,39 @@
 package sorter.project.utils;
 
-import java.util.Comparator;
 import java.util.List;
 
-public final class QuickSort<T> implements SortStrategy<T> {
+public class QuickSort implements SortStrategy {
+
     @Override
-    public void sort(List<T> items, Comparator<T> comparator) {
-        quickSort(items, 0, items.size() - 1, comparator);
+    public <T extends Comparable<T>> void sort(List<T> list) {
+        quickSort(list, 0, list.size() - 1);
     }
 
-    private void quickSort(List<T> items, int low, int high, Comparator<T> comparator) {
+    private <T extends Comparable<T>> void quickSort(List<T> list, int low, int high) {
         if (low < high) {
-            int pi = partition(items, low, high, comparator);
-            quickSort(items, low, pi - 1, comparator);
-            quickSort(items, pi + 1, high, comparator);
+            int pivotIndex = partition(list, low, high);
+            quickSort(list, low, pivotIndex - 1);
+            quickSort(list, pivotIndex + 1, high);
         }
     }
 
-    private int partition(List<T> items, int low, int high, Comparator<T> comparator) {
-        T pivot = items.get(high);
-        int i = (low - 1);
+    private <T extends Comparable<T>> int partition(List<T> list, int low, int high) {
+        T pivot = list.get(high);
+        int i = low - 1;
+
         for (int j = low; j < high; j++) {
-            if (comparator.compare(items.get(j), pivot) <= 0) {
+            if (list.get(j).compareTo(pivot) <= 0) {
                 i++;
-                T temp = items.get(i);
-                items.set(i, items.get(j));
-                items.set(j, temp);
+                swap(list, i, j);
             }
         }
-        T temp = items.get(i + 1);
-        items.set(i + 1, items.get(high));
-        items.set(high, temp);
+        swap(list, i + 1, high);
         return i + 1;
     }
-}
 
+    private <T extends Comparable<T>> void swap(List<T> list, int i, int j) {
+        T temp = list.get(i);
+        list.set(i, list.get(j));
+        list.set(j, temp);
+    }
+}

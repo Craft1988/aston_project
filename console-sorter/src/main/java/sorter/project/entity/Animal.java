@@ -8,6 +8,8 @@ public class Animal implements Comparable<Animal> {
 
     public Animal(AnimalBuilder animalBuilder) {
         this.type = animalBuilder.type;
+        this.eyeColor = animalBuilder.eyeColor;
+        this.wool = animalBuilder.wool;
     }
 
     public static class AnimalBuilder{
