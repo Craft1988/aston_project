@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
 import sorter.project.utils.SortStrategy;
 
 public class WorkingCollection {
