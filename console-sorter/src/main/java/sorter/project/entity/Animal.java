@@ -1,6 +1,6 @@
 package sorter.project.entity;
 
-public class Animal implements Comparable<Animal> {
+public class Animal {
 
     private final String type;
     private String eyeColor;
@@ -12,7 +12,7 @@ public class Animal implements Comparable<Animal> {
         this.wool = animalBuilder.wool;
     }
 
-    public static class AnimalBuilder{
+    public static class AnimalBuilder {
 
         private String type;
         private String eyeColor;
@@ -21,6 +21,7 @@ public class Animal implements Comparable<Animal> {
         public AnimalBuilder(String type) {
             this.type = type;
         }
+
         public AnimalBuilder setEyeColor(String eyeColor) {
             this.eyeColor = eyeColor;
             return this;
@@ -37,14 +38,14 @@ public class Animal implements Comparable<Animal> {
 
 
     }
-    @Override
-    public String toString() {
-        return "Animal{" + "type='" + type + '\'' + ", eyeColor='" + eyeColor + '\'' + ", wool=" + wool + '}';
+
+    public String getType() {
+        return type;
     }
 
     @Override
-    public int compareTo(Animal o) {
-        return this.type.compareTo(o.type);
+    public String toString() {
+        return "Animal{" + "type='" + type + '\'' + ", eyeColor='" + eyeColor + '\'' + ", wool=" + wool + '}';
     }
 
 }

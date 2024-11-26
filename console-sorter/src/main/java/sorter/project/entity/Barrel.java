@@ -1,6 +1,7 @@
 package sorter.project.entity;
 
-public class Barrel implements Comparable<Barrel> {
+public class Barrel {
+
     private double volume;
     private String storedMaterial;
     private String material;
@@ -11,7 +12,7 @@ public class Barrel implements Comparable<Barrel> {
         this.material = barrelBuilder.material;
     }
 
-    public static class BarrelBuilder  {
+    public static class BarrelBuilder {
 
         private double volume;
         private String storedMaterial;
@@ -36,15 +37,16 @@ public class Barrel implements Comparable<Barrel> {
         }
 
     }
+
+    public double getVolume() {
+        return volume;
+    }
+
     @Override
     public String toString() {
         return "Barrel{" + "volume=" + volume + ", storedMaterial='" + storedMaterial + '\'' + ", material='" + material
                 + '\'' + '}';
     }
 
-    @Override
-    public int compareTo(Barrel o) {
-        return Double.compare(this.volume, o.volume);
-    }
 
 }

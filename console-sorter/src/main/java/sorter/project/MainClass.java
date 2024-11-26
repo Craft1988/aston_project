@@ -2,8 +2,8 @@ package sorter.project;
 
 import java.util.Scanner;
 
-//import sorter.project.controller.BinarySearchController;
-//import sorter.project.controller.SortTheCollectionController;
+import sorter.project.controller.BinarySearchController;
+import sorter.project.controller.SortTheCollectionController;
 import sorter.project.controller.FilesController;
 import sorter.project.controller.FillingInCollectionsController;
 import sorter.project.entity.WorkingCollection;
@@ -27,16 +27,16 @@ public class MainClass {
                     FillingInCollectionsController.fillingNewOrOld();
                     break;
                 case 2:
-//                    SortTheCollectionController.sortTheCollection();
+                    SortTheCollectionController.sortCollection();
                     break;
                 case 3:
-//                    BinarySearchController.binarySearch();
+                    BinarySearchController.binarySearch();
                     break;
                 case 4:
                     FilesController.fileEntry();
                     break;
                 case 5:
-                    for (Object o : WorkingCollection.addedCollection()) {
+                    for (Object o : WorkingCollection.getCollection()) {
                         System.out.println(o.toString());
                     }
                     break;

@@ -1,21 +1,22 @@
 package sorter.project.utils;
 
+import java.util.Comparator;
 import java.util.List;
 
 
-public final class InsertionSort<T> implements SortStrategy {
+public final class InsertionSort<T> implements SortStrategy<T> {
 
     @Override
-    public <T extends Comparable<T>> void sort(List<T> list) {
-        for (int i = 1; i < list.size(); i++) {
-            T key = list.get(i);
+    public List<T> sort(List<T> items, Comparator<T> comparator) {
+        for (int i = 1; i < items.size(); i++) {
+            T key = items.get(i);
             int j = i - 1;
-
-            while (j >= 0 && list.get(j).compareTo(key) > 0) {
-                list.set(j + 1, list.get(j));
-                j--;
+            while (j >= 0 && comparator.compare(items.get(j), key) > 0) {
+                items.set(j + 1, items.get(j));
+                j = j - 1;
             }
-            list.set(j + 1, key);
+            items.set(j + 1, key);
         }
+        return items;
     }
 }

@@ -1,6 +1,7 @@
 package sorter.project.entity;
 
-public class Human implements Comparable<Human> {
+public class Human {
+
     private String sex;
     private int age;
     private String surname;
@@ -10,6 +11,7 @@ public class Human implements Comparable<Human> {
         this.age = humanBuilder.age;
         this.surname = humanBuilder.surname;
     }
+
 
     public static class HumanBuilder {
 
@@ -25,6 +27,7 @@ public class Human implements Comparable<Human> {
             this.age = age;
             return this;
         }
+
         public HumanBuilder setSex(String sex) {
             this.sex = sex;
             return this;
@@ -36,13 +39,15 @@ public class Human implements Comparable<Human> {
 
 
     }
+
+    public String getSurname() {
+        return surname;
+    }
+
     @Override
     public String toString() {
         return "Human{" + "sex='" + sex + '\'' + ", age=" + age + ", surname='" + surname + '\'' + '}';
     }
 
-    @Override
-    public int compareTo(Human o) {
-        return this.surname.compareTo(o.surname);
-    }
+
 }

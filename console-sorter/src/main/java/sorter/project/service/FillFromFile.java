@@ -65,10 +65,8 @@ public final class FillFromFile {
                     String eyeColor = null;
                     if (value.length >= 2) {
                         wool = Boolean.parseBoolean(value[1]);
-                        System.out.println(value[1]);
                         if (value.length >= 3) {
                             eyeColor = value[2];
-                            System.out.println(value[2]);
                         }
                     }
                     Animal animal = new Animal.AnimalBuilder(types)
