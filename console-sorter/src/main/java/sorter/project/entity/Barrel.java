@@ -1,11 +1,6 @@
 package sorter.project.entity;
 
-import java.util.Comparator;
-
-import sorter.project.service.interfaces.Autobuilder;
-
-public class Barrel {
-    private static Comparator<Barrel> comparator = (b1, b2) -> (int) (b1.volume - b2.volume);
+public class Barrel implements Comparable<Barrel> {
     private double volume;
     private String storedMaterial;
     private String material;
@@ -16,27 +11,23 @@ public class Barrel {
         this.material = barrelBuilder.material;
     }
 
-    public static class BarrelBuilder implements Autobuilder {
+    public static class BarrelBuilder  {
+
         private double volume;
         private String storedMaterial;
         private String material;
-
-        public BarrelBuilder(double volume, String storedMaterial, String material) {
+        public BarrelBuilder(double volume) {
             this.volume = volume;
+        }
+
+        public BarrelBuilder setStoredMaterial(String storedMaterial) {
             this.storedMaterial = storedMaterial;
+            return this;
+        }
+
+        public BarrelBuilder setMaterial(String material) {
             this.material = material;
-        }
-
-        @Override
-        public Autobuilder randomAutoset() {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-        @Override
-        public Autobuilder fromFileAutoset() {
-            // TODO Auto-generated method stub
-            return null;
+            return this;
         }
 
         public Barrel build() {
@@ -44,15 +35,15 @@ public class Barrel {
         }
 
     }
-
-    public static Comparator<Barrel> getComparator() {
-        return comparator;
-    }
-
     @Override
     public String toString() {
         return "Barrel{" + "volume=" + volume + ", storedMaterial='" + storedMaterial + '\'' + ", material='" + material
                 + '\'' + '}';
+    }
+
+    @Override
+    public int compareTo(Barrel o) {
+        return Double.compare(this.volume, o.volume);
     }
 
 }

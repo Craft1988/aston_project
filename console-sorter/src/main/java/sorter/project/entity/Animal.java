@@ -1,41 +1,31 @@
 package sorter.project.entity;
 
-import java.util.Comparator;
+public class Animal implements Comparable<Animal> {
 
-import sorter.project.service.interfaces.Autobuilder;
-
-public class Animal {
-    private static Comparator<Animal> comparator = Comparator.comparing(a -> a.type);
-    private String type;
+    private final String type;
     private String eyeColor;
     private boolean wool;
 
     public Animal(AnimalBuilder animalBuilder) {
         this.type = animalBuilder.type;
-        this.eyeColor = animalBuilder.eyeColor;
-        this.wool = animalBuilder.wool;
     }
 
-    public static class AnimalBuilder implements Autobuilder {
+    public static class AnimalBuilder{
+
         private String type;
         private String eyeColor;
         private boolean wool;
 
-        public AnimalBuilder(String type, String eyeColor, boolean wool) {
+        public AnimalBuilder(String type) {
             this.type = type;
-            this.eyeColor = eyeColor;
-            this.wool = wool;
         }
-
-        @Override
-        public Autobuilder randomAutoset() {
-            // TODO Auto-generated method stub
+        public AnimalBuilder setEyeColor(String eyeColor) {
+            this.eyeColor = eyeColor;
             return this;
         }
 
-        @Override
-        public Autobuilder fromFileAutoset() {
-            // TODO Auto-generated method stub
+        public AnimalBuilder setWool(boolean wool) {
+            this.wool = wool;
             return this;
         }
 
@@ -43,15 +33,16 @@ public class Animal {
             return new Animal(this);
         }
 
-    }
 
+    }
     @Override
     public String toString() {
         return "Animal{" + "type='" + type + '\'' + ", eyeColor='" + eyeColor + '\'' + ", wool=" + wool + '}';
     }
 
-    public static Comparator<Animal> getComparator() {
-        return comparator;
+    @Override
+    public int compareTo(Animal o) {
+        return this.type.compareTo(o.type);
     }
 
 }

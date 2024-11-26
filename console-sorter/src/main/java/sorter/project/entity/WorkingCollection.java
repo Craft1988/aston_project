@@ -20,7 +20,7 @@
 //    }
 //
 //    public static <T> List<T> getCollection() {
-//        return new ArrayList<>(list);
+//        return new ArrayList<T>(list);
 //    }
 //}
 
@@ -65,7 +65,5 @@ public class WorkingCollection {
         } catch (IOException e) {
             System.err.println("Ошибка при сохранении коллекции в файл: " + e.getMessage());
         }
-
-
     }
 }
