@@ -32,6 +32,22 @@ public class Human {
             this.surname = surname;
         }
 
+        public HumanBuilder() {
+
+        }
+
+        public void setSex(String sex) {
+            this.sex = sex;
+        }
+
+        public void setAge(int age) {
+            this.age = age;
+        }
+
+        public void setSurname(String surname) {
+            this.surname = surname;
+        }
+
         @Override
         public Autobuilder randomAutoset() {
             // TODO Auto-generated method stub

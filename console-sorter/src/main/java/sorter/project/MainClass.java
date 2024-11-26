@@ -28,7 +28,7 @@ public class MainClass {
                     FillingInCollectionsController.fillingNewOrOld();
                     break;
                 case 2:
-                    SortTheCollectionController.sortTheCollection();
+                    SortTheCollectionController.sortAndSearchCollection();
                     break;
                 case 3:
 //                    BinarySearchController.binarySearch();

@@ -32,6 +32,22 @@ public class Barrel {
             this.material = material;
         }
 
+        public BarrelBuilder() {
+
+        }
+
+        public void setVolume(double volume) {
+            this.volume = volume;
+        }
+
+        public void setStoredMaterial(String storedMaterial) {
+            this.storedMaterial = storedMaterial;
+        }
+
+        public void setMaterial(String material) {
+            this.material = material;
+        }
+
         @Override
         public Autobuilder randomAutoset() {
             // TODO Auto-generated method stub
