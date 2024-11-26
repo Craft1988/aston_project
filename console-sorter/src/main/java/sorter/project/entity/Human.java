@@ -10,10 +10,15 @@ public class Human {
     private int age;
     private String surname;
 
+
     public Human(HumanBuilder humanBuilder) {
         this.sex = humanBuilder.sex;
         this.age = humanBuilder.age;
         this.surname = humanBuilder.surname;
+    }
+
+    public int getAge() {
+        return age;
     }
 
     public static class HumanBuilder implements Autobuilder {

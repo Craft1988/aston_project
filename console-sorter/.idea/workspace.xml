@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ede42bf1-a5e8-4393-916e-5901b1fc283e" name="Changes" comment="additional_age_validation_and_volume_validation">
-      <change afterPath="$PROJECT_DIR$/src/main/java/sorter/project/controller/FillingInCollectionsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/sorter/project/utils/BinarySearch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/sorter/project/utils/InsertionSort.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/sorter/project/utils/QuickSort.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/sorter/project/utils/SortStrategy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/MainClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/MainClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/utils/Sorter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/controller/FillingInCollectionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/controller/FillingInCollectionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/controller/SortTheCollectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/controller/SortTheCollectionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Barrel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Barrel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Human.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Human.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/WorkingCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/entity/WorkingCollection.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

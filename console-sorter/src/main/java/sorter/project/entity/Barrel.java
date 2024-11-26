@@ -10,6 +10,11 @@ public class Barrel {
     private String storedMaterial;
     private String material;
 
+    public double getVolume() {
+        return volume;
+    }
+
+
     public Barrel(BarrelBuilder barrelBuilder) {
         this.volume = barrelBuilder.volume;
         this.storedMaterial = barrelBuilder.storedMaterial;

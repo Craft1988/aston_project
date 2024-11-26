@@ -5,6 +5,7 @@ import sorter.project.service.FillFromConsole;
 import sorter.project.service.FillFromFile;
 import sorter.project.service.FillFromRandom;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -19,8 +20,8 @@ public class FillingInCollectionsController {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1:
-                if (WorkingCollection.addedCollection() != null) {
-                    WorkingCollection.deleteColection();
+                if (WorkingCollection.addInCollection(new ArrayList<>())) {
+                    WorkingCollection.deleteCollection();
                 }
                 filling(choice);
                 break;
