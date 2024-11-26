@@ -1,0 +1,151 @@
+Index: src/main/java/sorter/project/entity/Animal.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sorter.project.entity;\r\n\r\npublic class Animal implements Comparable<Animal> {\r\n\r\n    private final String type;\r\n    private String eyeColor;\r\n    private boolean wool;\r\n\r\n    public String getType() {\r\n        return type;\r\n    }\r\n\r\n\r\n    public Animal(AnimalBuilder animalBuilder) {\r\n    public Animal(Animal.AnimalBuilder animalBuilder) {\r\n        this.type = animalBuilder.type;\r\n        this.eyeColor = animalBuilder.eyeColor;\r\n        this.wool = animalBuilder.wool;\r\n    }\r\n\r\n    public static class AnimalBuilder{\r\n\r\n        private String type;\r\n        private String eyeColor;\r\n        private boolean wool;\r\n\r\n        public AnimalBuilder(String type) {\r\n            this.type = type;\r\n        }\r\n        public AnimalBuilder setEyeColor(String eyeColor) {\r\n            this.eyeColor = eyeColor;\r\n            return this;\r\n        }\r\n\r\n        public AnimalBuilder setWool(boolean wool) {\r\n            this.wool = wool;\r\n            return this;\r\n        }\r\n\r\n        public Animal build() {\r\n            return new Animal(this);\r\n        }\r\n\r\n\r\n    }\r\n    @Override\r\n    public String toString() {\r\n        return \"Animal{\" + \"type='\" + type + '\\'' + \", eyeColor='\" + eyeColor + '\\'' + \", wool=\" + wool + '}';\r\n    }\r\n\r\n    public static Comparator<Animal> getComparator() {\r\n        return comparator;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/sorter/project/entity/Animal.java b/src/main/java/sorter/project/entity/Animal.java
+--- a/src/main/java/sorter/project/entity/Animal.java	(revision 76a195b68f20de39e37aa5d3a15eb21704c6338e)
++++ b/src/main/java/sorter/project/entity/Animal.java	(date 1732649734434)
+@@ -10,8 +10,6 @@
+         return type;
+     }
+ 
+-
+-    public Animal(AnimalBuilder animalBuilder) {
+     public Animal(Animal.AnimalBuilder animalBuilder) {
+         this.type = animalBuilder.type;
+         this.eyeColor = animalBuilder.eyeColor;
+Index: src/main/java/sorter/project/entity/Human.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sorter.project.entity;\r\n\r\npublic class Human implements Comparable<Human> {\r\n    private String sex;\r\n    private int age;\r\n    private String surname;\r\n\r\n    public Human(HumanBuilder humanBuilder) {\r\n        this.sex = humanBuilder.sex;\r\n        this.age = humanBuilder.age;\r\n        this.surname = humanBuilder.surname;\r\n    }\r\n\r\n    public static class HumanBuilder {\r\n\r\n    public int getAge() {\r\n        return age;\r\n    }\r\n\r\n    public static class HumanBuilder implements Autobuilder {\r\n        private String sex;\r\n        private int age;\r\n        private String surname;\r\n\r\n        public HumanBuilder(String surname) {\r\n            this.surname = surname;\r\n        }\r\n\r\n        public HumanBuilder setAge(int age) {\r\n            this.age = age;\r\n            return this;\r\n        }\r\n        public HumanBuilder setSex(String sex) {\r\n            this.sex = sex;\r\n            return this;\r\n        }\r\n\r\n        public Human build() {\r\n            return new Human(this);\r\n        }\r\n\r\n\r\n    }\r\n    @Override\r\n    public String toString() {\r\n        return \"Human{\" + \"sex='\" + sex + '\\'' + \", age=\" + age + \", surname='\" + surname + '\\'' + '}';\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/sorter/project/entity/Human.java b/src/main/java/sorter/project/entity/Human.java
+--- a/src/main/java/sorter/project/entity/Human.java	(revision 76a195b68f20de39e37aa5d3a15eb21704c6338e)
++++ b/src/main/java/sorter/project/entity/Human.java	(date 1732649795365)
+@@ -10,14 +10,11 @@
+         this.age = humanBuilder.age;
+         this.surname = humanBuilder.surname;
+     }
++    public String getSurname() {
++        return surname;
++    }
+ 
+-    public static class HumanBuilder {
+-
+-    public int getAge() {
+-        return age;
+-    }
+-
+-    public static class HumanBuilder implements Autobuilder {
++    public static class HumanBuilder{
+         private String sex;
+         private int age;
+         private String surname;
+Index: src/main/java/sorter/project/controller/SortTheCollectionController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sorter.project.controller;\r\n\r\nimport sorter.project.entity.WorkingCollection;\r\nimport sorter.project.utils.InsertionSort;\r\nimport sorter.project.utils.QuickSort;\r\nimport sorter.project.utils.SortStrategy;\r\nimport sorter.project.entity.Human;\r\nimport sorter.project.entity.Animal;\r\nimport sorter.project.entity.Barrel;\r\n\r\nimport java.util.Comparator;\r\nimport java.util.Scanner;\r\n\r\npublic class SortTheCollectionController {\r\n    public static void sortTheCollection() {\r\n        Scanner scanner = new Scanner(System.in);\r\n        System.out.println(\"Выберите действие:\");\r\n        System.out.println(\"1. Быстрая сортировка\");\r\n        System.out.println(\"2. Сортировка вставками\");\r\n        System.out.println(\"3. На главную\");\r\n        int choice = scanner.nextInt();\r\n\r\n        System.out.println(\"Выберите тип объектов для сортировки:\");\r\n        System.out.println(\"1. Human\");\r\n        System.out.println(\"2. Animal\");\r\n        System.out.println(\"3. Barrel\");\r\n        int typeChoice = scanner.nextInt();\r\n\r\n        Comparator<Object> comparator;\r\n        switch (typeChoice) {\r\n            case 1:\r\n                comparator = Comparator.comparingInt(o -> ((Human) o).getAge());\r\n                break;\r\n            case 2:\r\n                comparator = Comparator.comparing(o -> ((Animal) o).getType());\r\n                break;\r\n            case 3:\r\n                comparator = Comparator.comparingDouble(o -> ((Barrel) o).getVolume());\r\n                break;\r\n            default:\r\n                System.out.println(\"Неверный выбор!\");\r\n                return;\r\n        }\r\n\r\n        SortStrategy<Object> sortStrategy;\r\n        switch (choice) {\r\n            case 1:\r\n                sortStrategy = new QuickSort<>();\r\n                break;\r\n            case 2:\r\n                sortStrategy = new InsertionSort<>();\r\n                break;\r\n            case 3:\r\n                return;\r\n            default:\r\n                System.out.println(\"Неверный выбор!\");\r\n                return;\r\n        }\r\n\r\n        WorkingCollection.sortAndPrint(sortStrategy, comparator);\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/sorter/project/controller/SortTheCollectionController.java b/src/main/java/sorter/project/controller/SortTheCollectionController.java
+--- a/src/main/java/sorter/project/controller/SortTheCollectionController.java	(revision 76a195b68f20de39e37aa5d3a15eb21704c6338e)
++++ b/src/main/java/sorter/project/controller/SortTheCollectionController.java	(date 1732649734438)
+@@ -29,7 +29,7 @@
+         Comparator<Object> comparator;
+         switch (typeChoice) {
+             case 1:
+-                comparator = Comparator.comparingInt(o -> ((Human) o).getAge());
++                comparator = Comparator.comparingInt(o -> ((Human) o).getSurname());
+                 break;
+             case 2:
+                 comparator = Comparator.comparing(o -> ((Animal) o).getType());
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"ede42bf1-a5e8-4393-916e-5901b1fc283e\" name=\"Changes\" comment=\"sorter_fix\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$/..\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 2\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2pJW1iRtddZcSZrXygu9slMbHho\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Application.MainClass.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/Home-PC/IdeaProjects/aston_project/console-sorter&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\Home-PC\\IdeaProjects\\aston_project\\console-sorter\\src\\main\\resources\\files\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"MainClass\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"sorter.project.MainClass\" />\r\n      <module name=\"console-sorter\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"sorter.project.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.MainClass\" />\r\n        <item itemvalue=\"Application.MainClass\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"ede42bf1-a5e8-4393-916e-5901b1fc283e\" name=\"Changes\" comment=\"\" />\r\n      <created>1732484446035</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1732484446035</updated>\r\n      <workItem from=\"1732484447197\" duration=\"1465000\" />\r\n      <workItem from=\"1732530131519\" duration=\"4835000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"fix\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732531662978</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732531662978</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"fix\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732532576850</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732532576850</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"sorter_fix\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732631079881</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732631079881</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"sorter_fix\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732633288699</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732633288699</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"sorter_fix\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732633949000</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732633949000</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"6\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"fix\" />\r\n    <MESSAGE value=\"sorter_fix\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"sorter_fix\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 76a195b68f20de39e37aa5d3a15eb21704c6338e)
++++ b/.idea/workspace.xml	(date 1732649735166)
+@@ -4,7 +4,11 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="ede42bf1-a5e8-4393-916e-5901b1fc283e" name="Changes" comment="sorter_fix" />
++    <list default="true" id="ede42bf1-a5e8-4393-916e-5901b1fc283e" name="Changes" comment="sorter_fix">
++      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/controller/SortTheCollectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/controller/SortTheCollectionController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Animal.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Human.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Human.java" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -29,28 +33,33 @@
+   &quot;associatedIndex&quot;: 2
+ }</component>
+   <component name="ProjectId" id="2pJW1iRtddZcSZrXygu9slMbHho" />
++  <component name="ProjectLevelVcsManager">
++    <ConfirmationsSetting value="2" id="Add" />
++  </component>
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;Application.MainClass.executor&quot;: &quot;Run&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Home-PC/IdeaProjects/aston_project/console-sorter&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "Application.MainClass.executor": "Run",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
++    "git-widget-placeholder": "sort__version",
++    "kotlin-language-version-configured": "true",
++    "last_opened_file_path": "D:/projects/aston/try2/aston_project/console-sorter",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "project.structure.last.edited": "Modules",
++    "project.structure.proportion": "0.0",
++    "project.structure.side.proportion": "0.0",
++    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
++    "vue.rearranger.settings.migration": "true"
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="C:\Users\Home-PC\IdeaProjects\aston_project\console-sorter\src\main\resources\files" />
+@@ -72,6 +81,9 @@
+     </configuration>
+     <recent_temporary>
+       <list>
++        <item itemvalue="Application.MainClass" />
++        <item itemvalue="Application.MainClass" />
++        <item itemvalue="Application.MainClass" />
+         <item itemvalue="Application.MainClass" />
+         <item itemvalue="Application.MainClass" />
+       </list>

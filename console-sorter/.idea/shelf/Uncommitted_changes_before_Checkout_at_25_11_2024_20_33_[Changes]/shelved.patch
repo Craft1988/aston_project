@@ -1,0 +1,21 @@
+Index: src/main/java/sorter/project/interfaces/AutoBuilder.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sorter.project.interfaces;\r\n\r\nimport sorter.project.impl.Animal;\r\n\r\npublic interface AutoBuilder {\r\n    AutoBuilder RandomAutoSet();\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/sorter/project/interfaces/AutoBuilder.java b/src/main/java/sorter/project/interfaces/AutoBuilder.java
+--- a/src/main/java/sorter/project/interfaces/AutoBuilder.java	(revision 2215e8ec451e5afc7cfff2b5e4de117551c67892)
++++ b/src/main/java/sorter/project/interfaces/AutoBuilder.java	(date 1732555989295)
+@@ -1,7 +1,6 @@
+ package sorter.project.interfaces;
+ 
+-import sorter.project.impl.Animal;
+-
+-public interface AutoBuilder {
+-    AutoBuilder RandomAutoSet();
++public interface Autobuilder {
++	Autobuilder randomAutoset();
++	Autobuilder fromFileAutoset();
+ }

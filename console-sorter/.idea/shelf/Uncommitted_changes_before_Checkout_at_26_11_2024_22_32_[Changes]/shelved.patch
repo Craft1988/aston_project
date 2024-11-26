@@ -1,0 +1,26 @@
+Index: src/main/java/sorter/project/utils/SortStrategy.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sorter.project.utils;\r\n\r\nimport java.util.List;\r\n\r\npublic interface SortStrategy {\r\n    <T extends Comparable<T>> void sort(List<T> list);\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/sorter/project/utils/SortStrategy.java b/src/main/java/sorter/project/utils/SortStrategy.java
+--- a/src/main/java/sorter/project/utils/SortStrategy.java	(revision 76a195b68f20de39e37aa5d3a15eb21704c6338e)
++++ b/src/main/java/sorter/project/utils/SortStrategy.java	(date 1732649523276)
+@@ -1,7 +1,11 @@
+ package sorter.project.utils;
+ 
++
++import java.util.Comparator;
+ import java.util.List;
+ 
+-public interface SortStrategy {
+-    <T extends Comparable<T>> void sort(List<T> list);
+-}
+\ No newline at end of file
++public interface SortStrategy<T> {
++
++    void sort(List<T> items, Comparator<T> comparator);
++
++}

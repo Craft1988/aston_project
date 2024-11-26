@@ -1,0 +1,41 @@
+Index: src/main/java/sorter/project/utils/InsertionSort.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sorter.project.utils;\r\n\r\nimport java.util.Comparator;\r\nimport java.util.List;\r\n\r\npublic final class InsertionSort<T> implements SortStrategy {\r\n\r\n    @Override\r\n    public void sort(List<T> items, Comparator<T> comparator) {\r\n        for (int i = 1; i < items.size(); i++) {\r\n            T key = items.get(i);\r\n            int j = i - 1;\r\n            while (j >= 0 && comparator.compare(items.get(j), key) > 0) {\r\n                items.set(j + 1, items.get(j));\r\n                j = j - 1;\r\n            }\r\n            items.set(j + 1, key);\r\n        }\r\n    }\r\n}\r\n\r\n\r\n//    public static <T> void insertionSort(List<T> unsorted, Comparator<? super T> c) {\r\n//        for (int i = 1; i < unsorted.size(); i++) {\r\n//            for (int j = i; j > 0; j--) {\r\n//                if (c.compare(unsorted.get(j - 1), unsorted.get(j)) > 0) {\r\n//                    T temp = unsorted.get(j - 1);\r\n//                    unsorted.remove(j - 1);\r\n//                    unsorted.add(j, temp);\r\n//                }\r\n//            }\r\n//        }\r\n//    }\r\n//\r\n//    public static <T> int binarySearch(T item, T[] src) {\r\n//        return -1;\r\n//    }\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/sorter/project/utils/InsertionSort.java b/src/main/java/sorter/project/utils/InsertionSort.java
+--- a/src/main/java/sorter/project/utils/InsertionSort.java	(revision 76a195b68f20de39e37aa5d3a15eb21704c6338e)
++++ b/src/main/java/sorter/project/utils/InsertionSort.java	(date 1732649461141)
+@@ -3,7 +3,8 @@
+ import java.util.Comparator;
+ import java.util.List;
+ 
+-public final class InsertionSort<T> implements SortStrategy {
++
++public final class InsertionSort<T> implements SortStrategy<T> {
+ 
+     @Override
+     public void sort(List<T> items, Comparator<T> comparator) {
+@@ -20,19 +21,5 @@
+ }
+ 
+ 
+-//    public static <T> void insertionSort(List<T> unsorted, Comparator<? super T> c) {
+-//        for (int i = 1; i < unsorted.size(); i++) {
+-//            for (int j = i; j > 0; j--) {
+-//                if (c.compare(unsorted.get(j - 1), unsorted.get(j)) > 0) {
+-//                    T temp = unsorted.get(j - 1);
+-//                    unsorted.remove(j - 1);
+-//                    unsorted.add(j, temp);
+-//                }
+-//            }
+-//        }
+-//    }
+-//
+-//    public static <T> int binarySearch(T item, T[] src) {
+-//        return -1;
+-//    }
++
+ 

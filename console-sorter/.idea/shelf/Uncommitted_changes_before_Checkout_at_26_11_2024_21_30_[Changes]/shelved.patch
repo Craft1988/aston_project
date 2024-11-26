@@ -1,0 +1,198 @@
+Index: src/main/java/sorter/project/utils/QuickSort.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sorter.project.utils;\r\n\r\nimport java.util.List;\r\n\r\npublic class QuickSort implements SortStrategy {\r\n\r\n    @Override\r\n    public <T extends Comparable<T>> void sort(List<T> list) {\r\n        quickSort(list, 0, list.size() - 1);\r\n    }\r\n\r\n    private <T extends Comparable<T>> void quickSort(List<T> list, int low, int high) {\r\n        if (low < high) {\r\n            int pivotIndex = partition(list, low, high);\r\n            quickSort(list, low, pivotIndex - 1);\r\n            quickSort(list, pivotIndex + 1, high);\r\n        }\r\n    }\r\n\r\n    private <T extends Comparable<T>> int partition(List<T> list, int low, int high) {\r\n        T pivot = list.get(high);\r\n        int i = low - 1;\r\n\r\n        for (int j = low; j < high; j++) {\r\n            if (list.get(j).compareTo(pivot) <= 0) {\r\n                i++;\r\n                swap(list, i, j);\r\n            }\r\n        }\r\n        swap(list, i + 1, high);\r\n        return i + 1;\r\n    }\r\n\r\n    private <T extends Comparable<T>> void swap(List<T> list, int i, int j) {\r\n        T temp = list.get(i);\r\n        list.set(i, list.get(j));\r\n        list.set(j, temp);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/sorter/project/utils/QuickSort.java b/src/main/java/sorter/project/utils/QuickSort.java
+--- a/src/main/java/sorter/project/utils/QuickSort.java	
++++ b/src/main/java/sorter/project/utils/QuickSort.java	
+@@ -4,7 +4,7 @@
+ 
+ public class QuickSort implements SortStrategy {
+ 
+-    @Override
++
+     public <T extends Comparable<T>> void sort(List<T> list) {
+         quickSort(list, 0, list.size() - 1);
+     }
+Index: src/main/java/sorter/project/utils/InsertionSort.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sorter.project.utils;\r\n\r\nimport java.util.List;\r\n\r\n\r\npublic final class InsertionSort<T> implements SortStrategy {\r\n\r\n    @Override\r\n    public <T extends Comparable<T>> void sort(List<T> list) {\r\n        for (int i = 1; i < list.size(); i++) {\r\n            T key = list.get(i);\r\n            int j = i - 1;\r\n\r\n            while (j >= 0 && list.get(j).compareTo(key) > 0) {\r\n                list.set(j + 1, list.get(j));\r\n                j--;\r\n            }\r\n            list.set(j + 1, key);\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/sorter/project/utils/InsertionSort.java b/src/main/java/sorter/project/utils/InsertionSort.java
+--- a/src/main/java/sorter/project/utils/InsertionSort.java	
++++ b/src/main/java/sorter/project/utils/InsertionSort.java	
+@@ -5,8 +5,9 @@
+ 
+ public final class InsertionSort<T> implements SortStrategy {
+ 
+-    @Override
+-    public <T extends Comparable<T>> void sort(List<T> list) {
++
++
++    public static <T extends Comparable<T>> void sort(List<T> list) {
+         for (int i = 1; i < list.size(); i++) {
+             T key = list.get(i);
+             int j = i - 1;
+Index: src/main/java/sorter/project/utils/SortStrategy.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sorter.project.utils;\r\n\r\nimport java.util.List;\r\n\r\npublic interface SortStrategy {\r\n    <T extends Comparable<T>> void sort(List<T> list);\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/sorter/project/utils/SortStrategy.java b/src/main/java/sorter/project/utils/SortStrategy.java
+--- a/src/main/java/sorter/project/utils/SortStrategy.java	
++++ b/src/main/java/sorter/project/utils/SortStrategy.java	
+@@ -3,5 +3,7 @@
+ import java.util.List;
+ 
+ public interface SortStrategy {
+-    <T extends Comparable<T>> void sort(List<T> list);
++    static <T extends Comparable<T>> void sort(List<T> list){
++
++    }
+ }
+\ No newline at end of file
+Index: src/main/java/sorter/project/controller/SortTheCollectionController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sorter.project.controller;\r\n\r\nimport sorter.project.entity.Animal;\r\nimport sorter.project.entity.WorkingCollection;\r\nimport sorter.project.utils.InsertionSort;\r\nimport sorter.project.utils.QuickSort;\r\nimport sorter.project.utils.SortStrategy;\r\n\r\nimport java.util.Comparator;\r\nimport java.util.List;\r\nimport java.util.Scanner;\r\n/*\r\npublic class SortTheCollectionController {\r\n\r\n    public static void sortTheCollection() {\r\n        Scanner scanner = new Scanner(System.in);\r\n        System.out.println(\"Выберите действие:\");\r\n        System.out.println(\"1. Быстрая сортировка\");\r\n        System.out.println(\"2. Сортировка вставками\");\r\n        System.out.println(\"3. На главную\");\r\n        int choice = scanner.nextInt();\r\n\r\n        List items = WorkingCollection.addedCollection();\r\n        SortStrategy<WorkingCollection> sortStrategy;\r\n\r\n        switch (choice) {\r\n            case 1:\r\n                sortStrategy = new QuickSort<>();\r\n                sortStrategy.sort(items, Comparator.comparingInt(WorkingCollection::getValue));\r\n                System.out.println(\"Отсортированный список с использованием быстрой сортировки:\");\r\n                break;\r\n            case 2:\r\n                sortStrategy = new InsertionSort<>();\r\n                sortStrategy.sort(items);\r\n                System.out.println(\"Отсортированный список с использованием сортировки вставками:\");\r\n                break;\r\n            case 3:\r\n                return;\r\n            default:\r\n                System.out.println(\"Неверный выбор!\");\r\n                return;\r\n        }\r\n\r\n        for (Object item : items) {\r\n            System.out.println(item.getName() + \": \" + item.getValue());\r\n        }\r\n    }\r\n}\r\n\r\n/*\r\npublic class Sorter {\r\n    private SortStrategy sortStrategy;\r\n\r\n    public Sorter(SortStrategy sortStrategy) {\r\n        this.sortStrategy = sortStrategy;\r\n    }\r\n\r\n    public void setSortStrategy(SortStrategy sortStrategy) {\r\n        this.sortStrategy = sortStrategy;\r\n    }\r\n\r\n    public <T extends Comparable<T>> void sort(List<T> list) {\r\n        sortStrategy.sort(list);\r\n    }\r\n}\r\n */\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/sorter/project/controller/SortTheCollectionController.java b/src/main/java/sorter/project/controller/SortTheCollectionController.java
+--- a/src/main/java/sorter/project/controller/SortTheCollectionController.java	
++++ b/src/main/java/sorter/project/controller/SortTheCollectionController.java	
+@@ -9,7 +9,7 @@
+ import java.util.Comparator;
+ import java.util.List;
+ import java.util.Scanner;
+-/*
++
+ public class SortTheCollectionController {
+ 
+     public static void sortTheCollection() {
+Index: src/main/java/sorter/project/MainClass.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sorter.project;\r\n\r\nimport java.util.Scanner;\r\n\r\n//import sorter.project.controller.BinarySearchController;\r\n//import sorter.project.controller.SortTheCollectionController;\r\nimport sorter.project.controller.FilesController;\r\nimport sorter.project.controller.FillingInCollectionsController;\r\nimport sorter.project.entity.WorkingCollection;\r\n\r\npublic class MainClass {\r\n    static Scanner scanner = new Scanner(System.in);\r\n\r\n    public static void main(String[] args) {\r\n        while (true) {\r\n            System.out.println(\"Выберите действие:\");\r\n            System.out.println(\"1. Заполнить коллекцию\");\r\n            System.out.println(\"2. Сортировать коллекцию\");\r\n            System.out.println(\"3. Найти элемент\");\r\n            System.out.println(\"4. Записать в файл\");\r\n            System.out.println(\"5. Вывести в консоль\");\r\n            System.out.println(\"6. Выход\");\r\n\r\n            int choice = scanner.nextInt();\r\n            switch (choice) {\r\n                case 1:\r\n                    FillingInCollectionsController.fillingNewOrOld();\r\n                    break;\r\n                case 2:\r\n//                    SortTheCollectionController.sortTheCollection();\r\n                    break;\r\n                case 3:\r\n//                    BinarySearchController.binarySearch();\r\n                    break;\r\n                case 4:\r\n                    FilesController.fileEntry();\r\n                    break;\r\n                case 5:\r\n                    for (Object o : WorkingCollection.addedCollection()) {\r\n                        System.out.println(o.toString());\r\n                    }\r\n                    break;\r\n                case 6:\r\n                    System.exit(0);\r\n                    break;\r\n                default:\r\n                    System.out.println(\"Неверный выбор!\");\r\n            }\r\n        }\r\n\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/sorter/project/MainClass.java b/src/main/java/sorter/project/MainClass.java
+--- a/src/main/java/sorter/project/MainClass.java	
++++ b/src/main/java/sorter/project/MainClass.java	
+@@ -3,7 +3,7 @@
+ import java.util.Scanner;
+ 
+ //import sorter.project.controller.BinarySearchController;
+-//import sorter.project.controller.SortTheCollectionController;
++import sorter.project.controller.SortTheCollectionController;
+ import sorter.project.controller.FilesController;
+ import sorter.project.controller.FillingInCollectionsController;
+ import sorter.project.entity.WorkingCollection;
+@@ -27,7 +27,7 @@
+                     FillingInCollectionsController.fillingNewOrOld();
+                     break;
+                 case 2:
+-//                    SortTheCollectionController.sortTheCollection();
++                        SortTheCollectionController.sortTheCollection();
+                     break;
+                 case 3:
+ //                    BinarySearchController.binarySearch();
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"MavenProjectsManager\">\r\n    <option name=\"originalFiles\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/pom.xml\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_21\" default=\"true\" project-jdk-name=\"21\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/classes\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	
++++ b/.idea/misc.xml	
+@@ -1,4 +1,3 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ExternalStorageConfigurationManager" enabled="true" />
+   <component name="MavenProjectsManager">
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"ede42bf1-a5e8-4393-916e-5901b1fc283e\" name=\"Changes\" comment=\"additional_age_validation_and_volume_validation\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/sorter/project/utils/Writer.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/sorter/project/entity/Animal.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/sorter/project/entity/Animal.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/sorter/project/entity/Barrel.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/sorter/project/entity/Barrel.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/sorter/project/entity/Human.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/sorter/project/entity/Human.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/sorter/project/entity/WorkingCollection.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/sorter/project/entity/WorkingCollection.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/sorter/project/service/FillFromConsole.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/sorter/project/service/FillFromConsole.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/sorter/project/service/FillFromFile.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/sorter/project/service/FillFromFile.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/sorter/project/service/FillFromRandom.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/sorter/project/service/FillFromRandom.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/sorter/project/service/interfaces/Autobuilder.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/sorter/project/service/interfaces/Fill.java\" beforeDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$/..\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 2\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2pJW1iRtddZcSZrXygu9slMbHho\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Application.MainClass.executor\": \"Run\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"git-widget-placeholder\": \"fix__sorted\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/Home-PC/IdeaProjects/aston_project/console-sorter\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"project.structure.last.edited\": \"Modules\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.0\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\Home-PC\\IdeaProjects\\aston_project\\console-sorter\\src\\main\\resources\\files\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"MainClass\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"sorter.project.MainClass\" />\r\n      <module name=\"console-sorter\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"sorter.project.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.MainClass\" />\r\n        <item itemvalue=\"Application.MainClass\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"ede42bf1-a5e8-4393-916e-5901b1fc283e\" name=\"Changes\" comment=\"\" />\r\n      <created>1732484446035</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1732484446035</updated>\r\n      <workItem from=\"1732484447197\" duration=\"1465000\" />\r\n      <workItem from=\"1732530131519\" duration=\"4835000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"fix\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732531662978</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732531662978</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"fix\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732532576850</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732532576850</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"add write file, refactor code, update sorter\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732606516920</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732606516920</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"4\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"fix\" />\r\n    <MESSAGE value=\"add write file, refactor code, update sorter\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"add write file, refactor code, update sorter\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -5,17 +5,13 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="ede42bf1-a5e8-4393-916e-5901b1fc283e" name="Changes" comment="additional_age_validation_and_volume_validation">
+-      <change afterPath="$PROJECT_DIR$/src/main/java/sorter/project/utils/Writer.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Animal.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Barrel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Barrel.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Human.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Human.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/WorkingCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/entity/WorkingCollection.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/service/FillFromConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/service/FillFromConsole.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/service/FillFromFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/service/FillFromFile.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/service/FillFromRandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/service/FillFromRandom.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/service/interfaces/Autobuilder.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/service/interfaces/Fill.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/MainClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/MainClass.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/controller/SortTheCollectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/controller/SortTheCollectionController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/utils/InsertionSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/utils/InsertionSort.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/utils/QuickSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/utils/QuickSort.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/utils/SortStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/utils/SortStrategy.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -32,11 +28,14 @@
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$/.." value="master" />
++        <entry key="$PROJECT_DIR$/.." value="fix_sorted" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+   </component>
++  <component name="MarkdownSettingsMigration">
++    <option name="stateVersion" value="1" />
++  </component>
+   <component name="ProjectColorInfo">{
+   &quot;associatedIndex&quot;: 2
+ }</component>
+@@ -53,7 +52,7 @@
+     "Application.MainClass.executor": "Run",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "git-widget-placeholder": "fix__sorted",
++    "git-widget-placeholder": "sorted__version",
+     "kotlin-language-version-configured": "true",
+     "last_opened_file_path": "C:/Users/Home-PC/IdeaProjects/aston_project/console-sorter",
+     "node.js.detected.package.eslint": "true",
+@@ -64,6 +63,7 @@
+     "project.structure.last.edited": "Modules",
+     "project.structure.proportion": "0.0",
+     "project.structure.side.proportion": "0.0",
++    "settings.editor.selected.configurable": "preferences.lookFeel",
+     "vue.rearranger.settings.migration": "true"
+   }
+ }]]></component>
+@@ -88,6 +88,7 @@
+     </configuration>
+     <recent_temporary>
+       <list>
++        <item itemvalue="Application.MainClass" />
+         <item itemvalue="Application.MainClass" />
+         <item itemvalue="Application.MainClass" />
+       </list>

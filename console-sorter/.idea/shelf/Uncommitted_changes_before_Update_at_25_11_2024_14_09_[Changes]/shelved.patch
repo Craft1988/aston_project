@@ -1,0 +1,46 @@
+Index: src/main/java/sorter/project/object_addition/FillFromFile.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sorter.project.object_addition;\r\n\r\nimport sorter.project.entity.Animal;\r\nimport sorter.project.entity.Barrel;\r\nimport sorter.project.entity.Human;\r\n\r\nimport java.io.IOException;\r\nimport java.nio.file.Files;\r\nimport java.nio.file.Path;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic final class FillFromFile implements Fill {\r\n    private static List list = new ArrayList<>();\r\n\r\n    private FillFromFile() {\r\n        throw new UnsupportedOperationException();\r\n    }\r\n\r\n    public static List fill(int count, String type) {\r\n        switch (type) {\r\n            case \"Human\": {\r\n                try {\r\n                    list = createMan(count);\r\n                } catch (IOException e) {\r\n                    System.out.println(\"ошибка файла\");\r\n                }\r\n                break;\r\n            }\r\n            case \"Animal\": {\r\n                try {\r\n                    list = createAnimal(count);\r\n                } catch (IOException e) {\r\n                    System.out.println(\"ошибка файла\");\r\n                }\r\n                break;\r\n            }\r\n            case \"Barrel\": {\r\n                try {\r\n                    list = createBarrel(count);\r\n                } catch (IOException e) {\r\n                    System.out.println(\"ошибка файла\");\r\n                }\r\n                break;\r\n            }\r\n            default:\r\n                System.out.println(\"Не получилось\");\r\n        }\r\n        return list;\r\n    }\r\n\r\n    private static List createAnimal(int count) throws IOException {\r\n        List<Object> list = new ArrayList<>();\r\n        String s = \"src\\\\main\\\\java\\\\sorter\\\\project\\\\object_addition\\\\animal.txt\";\r\n        Path path = Path.of(s).toAbsolutePath();\r\n        List<String> lines = Files.readAllLines(path);\r\n        int countOfError = 0;\r\n        for (int i = 0; (i < count) && (i < lines.size()); i++) {\r\n            if (Validation.generalValidation(lines.get(i))) {\r\n                if (Validation.animalValidation(lines.get(i))) {\r\n                    int first = lines.get(i).indexOf(\" \");\r\n                    int second = lines.get(i).indexOf(\" \", first + 1);\r\n                    String types = lines.get(i).substring(0, first);\r\n                    boolean wool = Boolean.parseBoolean(lines.get(i).substring(first + 1, second));\r\n                    String eyeColor = lines.get(i).substring(second);\r\n                    Animal animal = new Animal.AnimalBuilder(types, eyeColor, wool).build();\r\n                    list.add(animal);\r\n                } else {\r\n                    System.out.println(\"Ошибка валидации2\");\r\n                    countOfError++;\r\n                }\r\n            } else {\r\n                System.out.println(\"Ошибка валидации\");\r\n                countOfError++;\r\n            }\r\n        }\r\n        System.out.println(\"Ошибок валидации: \" + countOfError);\r\n        return list;\r\n    }\r\n\r\n    private static List createMan(int count) throws IOException {\r\n        List<Object> list = new ArrayList<>();\r\n        String s = \"src\\\\main\\\\java\\\\sorter\\\\project\\\\object_addition\\\\man.txt\";\r\n        Path path = Path.of(s).toAbsolutePath();\r\n        List<String> lines = Files.readAllLines(path);\r\n        int countOfError = 0;\r\n        for (int i = 0; (i < count) && (i < lines.size()); i++) {\r\n            if (Validation.generalValidation(lines.get(i))) {\r\n                if (Validation.manValidation(lines.get(i))) {\r\n                    int first = lines.get(i).indexOf(\" \");\r\n                    int second = lines.get(i).indexOf(\" \", first + 1);\r\n                    String lastName = lines.get(i).substring(0, first);\r\n                    int age = Integer.parseInt(lines.get(i).substring(first + 1, second));\r\n                    String gender = lines.get(i).substring(second);\r\n                    Human man = new Human.HumanBuilder(gender, age, lastName).build();\r\n                    list.add(man);\r\n                } else {\r\n                    System.out.println(\"Ошибка валидации2\");\r\n                    countOfError++;\r\n                }\r\n            } else {\r\n                System.out.println(\"Ошибка валидации\");\r\n                countOfError++;\r\n            }\r\n        }\r\n        System.out.println(\"Ошибок валидации: \" + countOfError);\r\n        return list;\r\n    }\r\n\r\n    private static List createBarrel(int count) throws IOException {\r\n        List<Object> list = new ArrayList<>();\r\n        String s = \"src\\\\main\\\\java\\\\sorter\\\\project\\\\object_addition\\\\barrel.txt\";\r\n        Path path = Path.of(s).toAbsolutePath();\r\n        List<String> lines = Files.readAllLines(path);\r\n        int countOfError = 0;\r\n        for (int i = 0; (i < count) && (i < lines.size()); i++) {\r\n            if (Validation.generalValidation(lines.get(i))) {\r\n                if (Validation.barrelValidation(lines.get(i))) {\r\n                    int first = lines.get(i).indexOf(\" \");\r\n                    int second = lines.get(i).indexOf(\" \", first + 1);\r\n                    float volume = Float.parseFloat(lines.get(i).substring(0, first));\r\n                    String material = lines.get(i).substring(first + 1, second);\r\n                    String storedMaterial = lines.get(i).substring(second);\r\n                    Barrel barrel = new Barrel.BarrelBuilder(volume, storedMaterial, material).build();\r\n                    list.add(barrel);\r\n                } else {\r\n                    System.out.println(\"Ошибка валидации2\");\r\n                    countOfError++;\r\n                }\r\n            } else {\r\n                System.out.println(\"Ошибка валидации\");\r\n                countOfError++;\r\n            }\r\n        }\r\n        System.out.println(\"Ошибок валидации: \" + countOfError);\r\n        return list;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/sorter/project/object_addition/FillFromFile.java b/src/main/java/sorter/project/object_addition/FillFromFile.java
+--- a/src/main/java/sorter/project/object_addition/FillFromFile.java	(revision 26015957728afc9f482a7ef10a53eb72203eac09)
++++ b/src/main/java/sorter/project/object_addition/FillFromFile.java	(date 1732531805379)
+@@ -51,7 +51,7 @@
+ 
+     private static List createAnimal(int count) throws IOException {
+         List<Object> list = new ArrayList<>();
+-        String s = "src\\main\\java\\sorter\\project\\object_addition\\animal.txt";
++        String s = "src\\main\\java\\sorter\\project\\resurses\\animal.txt";
+         Path path = Path.of(s).toAbsolutePath();
+         List<String> lines = Files.readAllLines(path);
+         int countOfError = 0;
+@@ -80,7 +80,7 @@
+ 
+     private static List createMan(int count) throws IOException {
+         List<Object> list = new ArrayList<>();
+-        String s = "src\\main\\java\\sorter\\project\\object_addition\\man.txt";
++        String s = "src\\main\\java\\sorter\\project\\resurses\\man.txt";
+         Path path = Path.of(s).toAbsolutePath();
+         List<String> lines = Files.readAllLines(path);
+         int countOfError = 0;
+@@ -109,7 +109,7 @@
+ 
+     private static List createBarrel(int count) throws IOException {
+         List<Object> list = new ArrayList<>();
+-        String s = "src\\main\\java\\sorter\\project\\object_addition\\barrel.txt";
++        String s = "src\\main\\java\\sorter\\project\\resurses\\barrel.txt";
+         Path path = Path.of(s).toAbsolutePath();
+         List<String> lines = Files.readAllLines(path);
+         int countOfError = 0;
+diff --git a/src/main/java/sorter/project/object_addition/barrel.txt b/src/main/java/sorter/project/resurses/barrel.txt
+rename from src/main/java/sorter/project/object_addition/barrel.txt
+rename to src/main/java/sorter/project/resurses/barrel.txt
+diff --git a/src/main/java/sorter/project/object_addition/man.txt b/src/main/java/sorter/project/resurses/man.txt
+rename from src/main/java/sorter/project/object_addition/man.txt
+rename to src/main/java/sorter/project/resurses/man.txt
+diff --git a/src/main/java/sorter/project/object_addition/animal.txt b/src/main/java/sorter/project/resurses/animal.txt
+rename from src/main/java/sorter/project/object_addition/animal.txt
+rename to src/main/java/sorter/project/resurses/animal.txt

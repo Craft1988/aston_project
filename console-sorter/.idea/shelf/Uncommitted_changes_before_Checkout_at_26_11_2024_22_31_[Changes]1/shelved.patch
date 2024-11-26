@@ -1,0 +1,69 @@
+Index: src/main/java/sorter/project/utils/QuickSort.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sorter.project.utils;\r\n\r\nimport java.util.List;\r\n\r\npublic class QuickSort implements SortStrategy {\r\n\r\n    @Override\r\n    public <T extends Comparable<T>> void sort(List<T> list) {\r\n        quickSort(list, 0, list.size() - 1);\r\n    }\r\n\r\n    private <T extends Comparable<T>> void quickSort(List<T> list, int low, int high) {\r\n        if (low < high) {\r\n            int pivotIndex = partition(list, low, high);\r\n            quickSort(list, low, pivotIndex - 1);\r\n            quickSort(list, pivotIndex + 1, high);\r\n        }\r\n    }\r\n\r\n    private <T extends Comparable<T>> int partition(List<T> list, int low, int high) {\r\n        T pivot = list.get(high);\r\n        int i = low - 1;\r\n\r\n        for (int j = low; j < high; j++) {\r\n            if (list.get(j).compareTo(pivot) <= 0) {\r\n                i++;\r\n                swap(list, i, j);\r\n            }\r\n        }\r\n        swap(list, i + 1, high);\r\n        return i + 1;\r\n    }\r\n\r\n    private <T extends Comparable<T>> void swap(List<T> list, int i, int j) {\r\n        T temp = list.get(i);\r\n        list.set(i, list.get(j));\r\n        list.set(j, temp);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/sorter/project/utils/QuickSort.java b/src/main/java/sorter/project/utils/QuickSort.java
+--- a/src/main/java/sorter/project/utils/QuickSort.java	(revision 76a195b68f20de39e37aa5d3a15eb21704c6338e)
++++ b/src/main/java/sorter/project/utils/QuickSort.java	(date 1732649491951)
+@@ -1,39 +1,37 @@
+ package sorter.project.utils;
+ 
++import java.util.Comparator;
+ import java.util.List;
+ 
+-public class QuickSort implements SortStrategy {
+-
++public final class QuickSort<T> implements SortStrategy<T> {
+     @Override
+-    public <T extends Comparable<T>> void sort(List<T> list) {
+-        quickSort(list, 0, list.size() - 1);
++    public void sort(List<T> items, Comparator<T> comparator) {
++        quickSort(items, 0, items.size() - 1, comparator);
+     }
+ 
+-    private <T extends Comparable<T>> void quickSort(List<T> list, int low, int high) {
++    private void quickSort(List<T> items, int low, int high, Comparator<T> comparator) {
+         if (low < high) {
+-            int pivotIndex = partition(list, low, high);
+-            quickSort(list, low, pivotIndex - 1);
+-            quickSort(list, pivotIndex + 1, high);
++            int pi = partition(items, low, high, comparator);
++            quickSort(items, low, pi - 1, comparator);
++            quickSort(items, pi + 1, high, comparator);
+         }
+     }
+ 
+-    private <T extends Comparable<T>> int partition(List<T> list, int low, int high) {
+-        T pivot = list.get(high);
+-        int i = low - 1;
+-
++    private int partition(List<T> items, int low, int high, Comparator<T> comparator) {
++        T pivot = items.get(high);
++        int i = (low - 1);
+         for (int j = low; j < high; j++) {
+-            if (list.get(j).compareTo(pivot) <= 0) {
++            if (comparator.compare(items.get(j), pivot) <= 0) {
+                 i++;
+-                swap(list, i, j);
++                T temp = items.get(i);
++                items.set(i, items.get(j));
++                items.set(j, temp);
+             }
+         }
+-        swap(list, i + 1, high);
++        T temp = items.get(i + 1);
++        items.set(i + 1, items.get(high));
++        items.set(high, temp);
+         return i + 1;
+     }
+-
+-    private <T extends Comparable<T>> void swap(List<T> list, int i, int j) {
+-        T temp = list.get(i);
+-        list.set(i, list.get(j));
+-        list.set(j, temp);
+-    }
+ }
++
