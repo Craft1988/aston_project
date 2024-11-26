@@ -6,6 +6,7 @@ import java.util.Scanner;
 //import sorter.project.controller.SortTheCollectionController;
 import sorter.project.controller.FilesController;
 import sorter.project.controller.FillingInCollectionsController;
+import sorter.project.controller.SortTheCollectionController;
 import sorter.project.entity.WorkingCollection;
 
 public class MainClass {
@@ -27,7 +28,7 @@ public class MainClass {
                     FillingInCollectionsController.fillingNewOrOld();
                     break;
                 case 2:
-//                    SortTheCollectionController.sortTheCollection();
+                    SortTheCollectionController.sortTheCollection();
                     break;
                 case 3:
 //                    BinarySearchController.binarySearch();
@@ -36,7 +37,7 @@ public class MainClass {
                     FilesController.fileEntry();
                     break;
                 case 5:
-                    for (Object o : WorkingCollection.addedCollection()) {
+                    for (Object o : WorkingCollection.getCollection()) {
                         System.out.println(o.toString());
                     }
                     break;

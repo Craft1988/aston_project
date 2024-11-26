@@ -10,6 +10,11 @@ public class Animal {
     private String eyeColor;
     private boolean wool;
 
+    public String getType() {
+        return type;
+    }
+
+
     public Animal(AnimalBuilder animalBuilder) {
         this.type = animalBuilder.type;
         this.eyeColor = animalBuilder.eyeColor;
