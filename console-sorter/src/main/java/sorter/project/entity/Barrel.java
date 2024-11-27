@@ -1,10 +1,9 @@
 package sorter.project.entity;
 
-import lombok.Getter;
 
 public class Barrel {
 
-    @Getter
+
     private final double volume;
     private final String storedMaterial;
     private final String material;
@@ -39,6 +38,10 @@ public class Barrel {
             return new Barrel(this);
         }
 
+    }
+
+    public double getVolume() {
+        return volume;
     }
 
     @Override

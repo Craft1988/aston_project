@@ -28,19 +28,28 @@ public class BinarySearchController {
             return;
         }
         String detected;
-        while (true) {
+        int attempts = 0;
+        int maxAttempts = 5;
+        do {
             System.out.println("Введите искомый объект");
-            if (scanner.hasNext()) {
-                detected = scanner.nextLine();
-                if (Validation.generalValidation(detected) &&
-                        (Validation.barrelValidation(detected) ||
-                                Validation.animalValidation(detected) ||
-                                Validation.manValidation(detected))) {
-                    break;
-                }
+            scanner.next();
+            detected = scanner.nextLine();
+
+            if (Validation.generalValidation(detected) &&
+                    (Validation.barrelValidation(detected) ||
+                            Validation.animalValidation(detected) ||
+                            Validation.manValidation(detected))) {
+                break;
+            } else {
                 System.out.println("не валидно");
+                attempts++;
             }
-        }
+            if (attempts==maxAttempts){
+                System.out.println("превышено максимальное количество попыток");
+                return;
+            }
+
+        } while (true);
         performBinarySearch(choice, detected);
         if ((WorkingCollection.getDetectedObject() == -1)) {
             System.out.println("Объект не найден");
