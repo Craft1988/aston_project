@@ -22,10 +22,10 @@ public class FillingInCollectionsController {
                 if (!WorkingCollection.getCollection().isEmpty()) {
                     WorkingCollection.deleteCollection();
                 }
-                filling(choice);
+                filling();
                 break;
             case 2:
-                filling(choice);
+                filling();
                 break;
             case 3:
 
@@ -36,7 +36,7 @@ public class FillingInCollectionsController {
 
     }
 
-    public static void filling(int lastChoice) {
+    public static void filling() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Выберите действие:");
         System.out.println("1. Заполнить объектами Human");

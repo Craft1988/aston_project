@@ -29,12 +29,7 @@ public class BinarySearchController {
         }
         String detected;
         while (true) {
-            System.out.println("""
-                    Введите искомый объект:
-                    Пример:
-                    Иванов 40 man
-                    Зверь true синий
-                    25.5 дуб сусло""");
+            System.out.println("Введите искомый объект");
             if (scanner.hasNext()) {
                 detected = scanner.nextLine();
                 if (Validation.generalValidation(detected) &&
@@ -67,8 +62,8 @@ public class BinarySearchController {
                         break;
                     }
                 }
-                QuickSort<Human> quickSortHuman = new QuickSort<Human>();
-                BinarySearch<Human> binarySearchHuman = new BinarySearch<Human>();
+                QuickSort<Human> quickSortHuman = new QuickSort<>();
+                BinarySearch<Human> binarySearchHuman = new BinarySearch<>();
                 String lastName = value[0];
                 int age = 0;
                 String gender = null;
@@ -78,11 +73,10 @@ public class BinarySearchController {
                         gender = value[2];
                     }
                 }
-                Human man = new Human.HumanBuilder(lastName)
+                target = new Human.HumanBuilder(lastName)
                         .setAge(age)
                         .setSex(gender)
                         .build();
-                target = man;
                 comparator = Comparator.comparing(o -> ((Human) o).getSurname());
                 WorkingCollection.setDetectedObject(binarySearchHuman.search(quickSortHuman.sort(SortTheCollectionController.humanCollection(WorkingCollection.getCollection()),
                         comparator), target, comparator) + first);
@@ -94,8 +88,8 @@ public class BinarySearchController {
                         break;
                     }
                 }
-                QuickSort<Animal> quickSortAnimal = new QuickSort<Animal>();
-                BinarySearch<Animal> binarySearchAnimal = new BinarySearch<Animal>();
+                QuickSort<Animal> quickSortAnimal = new QuickSort<>();
+                BinarySearch<Animal> binarySearchAnimal = new BinarySearch<>();
                 String types = value[0];
                 boolean wool = false;
                 String eyeColor = null;
@@ -105,11 +99,10 @@ public class BinarySearchController {
                         eyeColor = value[2];
                     }
                 }
-                Animal animal = new Animal.AnimalBuilder(types)
+                target = new Animal.AnimalBuilder(types)
                         .setEyeColor(eyeColor)
                         .setWool(wool)
                         .build();
-                target = animal;
                 comparator = Comparator.comparing(o -> ((Animal) o).getType());
                 WorkingCollection.setDetectedObject(binarySearchAnimal.search(quickSortAnimal.sort(SortTheCollectionController.animalCollection(WorkingCollection.getCollection()),
                         comparator), target, comparator) + first);
@@ -121,8 +114,8 @@ public class BinarySearchController {
                         break;
                     }
                 }
-                QuickSort<Barrel> quickSortBarrel = new QuickSort<Barrel>();
-                BinarySearch<Barrel> binarySearchBarrel = new BinarySearch<Barrel>();
+                QuickSort<Barrel> quickSortBarrel = new QuickSort<>();
+                BinarySearch<Barrel> binarySearchBarrel = new BinarySearch<>();
                 float volume = Float.parseFloat(value[0]);
                 String material = null;
                 String storedMaterial = null;
@@ -132,11 +125,10 @@ public class BinarySearchController {
                         storedMaterial = value[2];
                     }
                 }
-                Barrel barrel = new Barrel.BarrelBuilder(volume)
+                target = new Barrel.BarrelBuilder(volume)
                         .setMaterial(material)
                         .setStoredMaterial(storedMaterial)
                         .build();
-                target = barrel;
                 comparator = Comparator.comparingDouble(o -> ((Barrel) o).getVolume());
                 WorkingCollection.setDetectedObject(binarySearchBarrel.search(quickSortBarrel.sort(SortTheCollectionController.barrelCollection(WorkingCollection.getCollection()),
                         comparator), target, comparator) + first);

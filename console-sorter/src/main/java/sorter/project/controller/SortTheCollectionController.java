@@ -45,7 +45,6 @@ public class SortTheCollectionController {
                 System.out.println("Неверный выбор!");
                 return;
         }
-        Comparator<Object> comparator;
         List animals = animalCollection(WorkingCollection.getCollection());
         List humans = humanCollection(WorkingCollection.getCollection());
         List barrels = barrelCollection(WorkingCollection.getCollection());

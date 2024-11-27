@@ -1,10 +1,13 @@
 package sorter.project.entity;
 
+import lombok.Getter;
+
 public class Barrel {
 
-    private double volume;
-    private String storedMaterial;
-    private String material;
+    @Getter
+    private final double volume;
+    private final String storedMaterial;
+    private final String material;
 
     public Barrel(BarrelBuilder barrelBuilder) {
         this.volume = barrelBuilder.volume;
@@ -14,7 +17,7 @@ public class Barrel {
 
     public static class BarrelBuilder {
 
-        private double volume;
+        private final double volume;
         private String storedMaterial;
         private String material;
 
@@ -36,10 +39,6 @@ public class Barrel {
             return new Barrel(this);
         }
 
-    }
-
-    public double getVolume() {
-        return volume;
     }
 
     @Override

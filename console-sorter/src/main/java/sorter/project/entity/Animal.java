@@ -1,10 +1,13 @@
 package sorter.project.entity;
 
+import lombok.Getter;
+
 public class Animal {
 
+    @Getter
     private final String type;
-    private String eyeColor;
-    private boolean wool;
+    private final String eyeColor;
+    private final boolean wool;
 
     public Animal(Animal.AnimalBuilder animalBuilder) {
         this.type = animalBuilder.type;
@@ -14,7 +17,7 @@ public class Animal {
 
     public static class AnimalBuilder {
 
-        private String type;
+        private final String type;
         private String eyeColor;
         private boolean wool;
 
@@ -37,10 +40,6 @@ public class Animal {
         }
 
 
-    }
-
-    public String getType() {
-        return type;
     }
 
     @Override

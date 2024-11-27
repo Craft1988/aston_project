@@ -13,13 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class FillFromFile {
-    private static List list = new ArrayList<>();
+    private static List<Object> list = new ArrayList<>();
 
     private FillFromFile() {
         throw new UnsupportedOperationException();
     }
 
-    public static List fill(int count, String type) {
+    public static List<Object> fill(int count, String type) {
         switch (type) {
             case "Human": {
                 try {
@@ -51,7 +51,7 @@ public final class FillFromFile {
         return list;
     }
 
-    private static List createAnimal(int count) throws IOException {
+    private static List<Object> createAnimal(int count) throws IOException {
         List<Object> list = new ArrayList<>();
         Path path = Paths.get("src", "main", "resources", "files", "animal.txt");
         List<String> lines = Files.readAllLines(path);
@@ -87,7 +87,7 @@ public final class FillFromFile {
         return list;
     }
 
-    private static List createMan(int count) throws IOException {
+    private static List<Object> createMan(int count) throws IOException {
         List<Object> list = new ArrayList<>();
         Path path = Paths.get("src", "main", "resources", "files", "man.txt");
         List<String> lines = Files.readAllLines(path);
@@ -123,7 +123,7 @@ public final class FillFromFile {
         return list;
     }
 
-    private static List createBarrel(int count) throws IOException {
+    private static List<Object> createBarrel(int count) throws IOException {
         List<Object> list = new ArrayList<>();
         Path path = Paths.get("src", "main", "resources", "files", "barrel.txt");
         List<String> lines = Files.readAllLines(path);

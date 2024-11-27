@@ -17,9 +17,9 @@ public class FillFromConsole{
         throw new UnsupportedOperationException();
     }
 
-    static List list = new ArrayList<>();
+    static List<Object> list = new ArrayList<>();
 
-    public static List fill(String type) {
+    public static List<Object> fill(String type) {
         System.out.println("Для завершения введите \"exit\"");
         switch (type) {
             case "Human": {
@@ -49,7 +49,7 @@ public class FillFromConsole{
         return list;
     }
 
-    private static List createAnimal() {
+    private static List<Object> createAnimal() {
         while (true) {
             String line = console.nextLine();
             if (line.equalsIgnoreCase("exit")) {
@@ -78,7 +78,7 @@ public class FillFromConsole{
         return list;
     }
 
-    private static List createMan() {
+    private static List<Object> createMan() {
         while (true) {
             String line = console.nextLine();
             if (line.equalsIgnoreCase("exit")) {
@@ -107,7 +107,7 @@ public class FillFromConsole{
         return list;
     }
 
-    private static List createBarrel() {
+    private static List<Object> createBarrel() {
         while (true) {
             String line = console.nextLine();
             if (line.equalsIgnoreCase("exit")) {

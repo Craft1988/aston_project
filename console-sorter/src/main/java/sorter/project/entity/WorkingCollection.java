@@ -1,36 +1,30 @@
 package sorter.project.entity;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class WorkingCollection {
-    private static List<Object> list = new ArrayList<>();
-
-    public static void setIsSorted(boolean isSorted) {
-        WorkingCollection.isSorted = isSorted;
-    }
-
-    public static boolean isSorted() {
-        return isSorted;
-    }
-
+    private static final List<Object> list = new ArrayList<>();
     private static boolean isSorted = false;
-
-    public static int getDetectedObject() {
-        return detectedObject;
-    }
-
-    public static void setDetectedObject(int detectedObject) {
-        WorkingCollection.detectedObject = detectedObject;
-
-    }
-
+    @Getter
     private static int detectedObject;
 
     private WorkingCollection() {
         throw new UnsupportedOperationException();
     }
 
+    public static boolean isSorted() {
+        return isSorted;
+    }
+    public static void setIsSorted(boolean isSorted) {
+        WorkingCollection.isSorted = isSorted;
+    }
+    public static void setDetectedObject(int detectedObject) {
+        WorkingCollection.detectedObject = detectedObject;
+
+    }
     public static <T> void addInCollection(List<T> addedList) {
         list.addAll(addedList);
         System.out.println("Данные добавлены");

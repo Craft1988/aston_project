@@ -1,10 +1,13 @@
 package sorter.project.entity;
 
+import lombok.Getter;
+
 public class Human {
 
-    private String sex;
-    private int age;
-    private String surname;
+    private final String sex;
+    private final int age;
+    @Getter
+    private final String surname;
 
     public Human(HumanBuilder humanBuilder) {
         this.sex = humanBuilder.sex;
@@ -17,7 +20,7 @@ public class Human {
 
         private String sex;
         private int age;
-        private String surname;
+        private final String surname;
 
         public HumanBuilder(String surname) {
             this.surname = surname;
@@ -38,10 +41,6 @@ public class Human {
         }
 
 
-    }
-
-    public String getSurname() {
-        return surname;
     }
 
     @Override
