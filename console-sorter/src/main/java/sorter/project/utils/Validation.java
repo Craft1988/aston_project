@@ -10,37 +10,30 @@ public final class Validation {
             return false;
         }
         String[] value = line.split(" ");
-        if (value.length > 3) {
-            return false;
-        }
-        return true;
-//        int first;
+        return value.length <= 3;
+    }
+
+    //        int first;
 //        if (line.contains(" ")) {
 //            first = line.indexOf(" ");
 //        } else return false;
 //        int second = line.indexOf(" ", first);
 //        return line.indexOf(' ', second) != -1;
-    }
-
     public static boolean animalValidation(String line) {
         String[] value = line.split(" ");
         if (Character.isUpperCase(value[0].charAt(0)) && value.length == 1) {
             return true;
         }
-        if ((value.length >= 2) && (value[1].equals("true") || value[1].equals("false")) && Character.isUpperCase(value[0].charAt(0))) {
-            return true;
-        }
+        return (value.length >= 2) && (value[1].equals("true") || value[1].equals("false")) && Character.isUpperCase(value[0].charAt(0));
 
-//        int first = line.indexOf(" ");
+    }
+
+    //        int first = line.indexOf(" ");
 //        int second = line.indexOf(" ", first + 1);
 //        if (Character.isUpperCase(line.charAt(0)) && Character.isUpperCase(line.charAt(second + 1))) {
 //            return line.substring(first + 1, second)
 //                    .equals("true") || line.substring(first + 1, second).equals("false");
 //        }
-        return false;
-
-    }
-
     public static boolean manValidation(String line) {
         String[] value = line.split(" ");
         if (!Character.isUpperCase(value[0].charAt(0))) {
@@ -59,15 +52,13 @@ public final class Validation {
             }
             if (value.length == 3) {
                 String gender = value[2].trim();
-                if (!gender.equals("man") && !gender.equals("woman")) {
-                    return false;
-                }
+                return gender.equals("man") || gender.equals("woman");
             }
 
         }
-
-
         return true;
+
+    }
 //        int first = line.indexOf(" ");
 //        if (first == -1) {
 //            return false;
@@ -95,8 +86,6 @@ public final class Validation {
 //        }
 //
 //        return true;
-    }
-
 
     public static boolean barrelValidation(String line) {
         String[] value = line.split(" ");

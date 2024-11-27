@@ -5,17 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ede42bf1-a5e8-4393-916e-5901b1fc283e" name="Changes" comment="additional_age_validation_and_volume_validation">
-      <change afterPath="$PROJECT_DIR$/src/main/java/sorter/project/utils/Writer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/controller/BinarySearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/controller/BinarySearchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/controller/FilesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/controller/FilesController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Animal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Barrel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Barrel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Human.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Human.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/WorkingCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/entity/WorkingCollection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/service/FillFromConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/service/FillFromConsole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/service/FillFromFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/service/FillFromFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/service/FillFromRandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/service/FillFromRandom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/service/interfaces/Autobuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/service/interfaces/Fill.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/utils/Writer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/utils/Writer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +21,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -37,6 +34,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -48,27 +48,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.MainClass.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "fix__sorted",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Home-PC/IdeaProjects/aston_project/console-sorter",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.MainClass.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;sort__new&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Home-PC/IdeaProjects/aston_project/console-sorter&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\projects\aston\try3\aston_project\console-sorter\src\main\java\sorter\project\entity" />
       <recent name="C:\Users\Home-PC\IdeaProjects\aston_project\console-sorter\src\main\resources\files" />
     </key>
   </component>

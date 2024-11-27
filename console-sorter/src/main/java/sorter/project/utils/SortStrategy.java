@@ -1,7 +1,11 @@
 package sorter.project.utils;
 
+
+import java.util.Comparator;
 import java.util.List;
 
-public interface SortStrategy {
-    <T extends Comparable<T>> void sort(List<T> list);
+public interface SortStrategy<T> {
+
+    List<T> sort(List<T> items, Comparator<T> comparator);
+
 }
