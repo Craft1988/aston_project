@@ -3,23 +3,23 @@ package sorter.project.service;
 import sorter.project.entity.Animal;
 import sorter.project.entity.Barrel;
 import sorter.project.entity.Human;
-import sorter.project.service.interfaces.Fill;
 import sorter.project.utils.Validation;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class FillFromFile implements Fill {
-    private static List list = new ArrayList<>();
+public final class FillFromFile {
+    private static List<Object> list = new ArrayList<>();
 
     private FillFromFile() {
         throw new UnsupportedOperationException();
     }
 
-    public static List fill(int count, String type) {
+    public static List<Object> fill(int count, String type) {
         switch (type) {
             case "Human": {
                 try {
@@ -51,21 +51,28 @@ public final class FillFromFile implements Fill {
         return list;
     }
 
-    private static List createAnimal(int count) throws IOException {
+    private static List<Object> createAnimal(int count) throws IOException {
         List<Object> list = new ArrayList<>();
-        String s = "src\\main\\java\\sorter\\project\\object_addition\\animal.txt";
-        Path path = Path.of(s).toAbsolutePath();
+        Path path = Paths.get("src", "main", "resources", "files", "animal.txt");
         List<String> lines = Files.readAllLines(path);
         int countOfError = 0;
         for (int i = 0; (i < count) && (i < lines.size()); i++) {
             if (Validation.generalValidation(lines.get(i))) {
                 if (Validation.animalValidation(lines.get(i))) {
-                    int first = lines.get(i).indexOf(" ");
-                    int second = lines.get(i).indexOf(" ", first + 1);
-                    String types = lines.get(i).substring(0, first);
-                    boolean wool = Boolean.parseBoolean(lines.get(i).substring(first + 1, second));
-                    String eyeColor = lines.get(i).substring(second);
-                    Animal animal = new Animal.AnimalBuilder(types, eyeColor, wool).build();
+                    String[] value = lines.get(i).split(" ");
+                    String types = value[0];
+                    boolean wool = false;
+                    String eyeColor = null;
+                    if (value.length >= 2) {
+                        wool = Boolean.parseBoolean(value[1]);
+                        if (value.length >= 3) {
+                            eyeColor = value[2];
+                        }
+                    }
+                    Animal animal = new Animal.AnimalBuilder(types)
+                            .setWool(wool)
+                            .setEyeColor(eyeColor)
+                            .build();
                     list.add(animal);
                 } else {
                     System.out.println("Ошибка валидации2");
@@ -80,21 +87,28 @@ public final class FillFromFile implements Fill {
         return list;
     }
 
-    private static List createMan(int count) throws IOException {
+    private static List<Object> createMan(int count) throws IOException {
         List<Object> list = new ArrayList<>();
-        String s = "src\\main\\java\\sorter\\project\\object_addition\\man.txt";
-        Path path = Path.of(s).toAbsolutePath();
+        Path path = Paths.get("src", "main", "resources", "files", "man.txt");
         List<String> lines = Files.readAllLines(path);
         int countOfError = 0;
         for (int i = 0; (i < count) && (i < lines.size()); i++) {
             if (Validation.generalValidation(lines.get(i))) {
                 if (Validation.manValidation(lines.get(i))) {
-                    int first = lines.get(i).indexOf(" ");
-                    int second = lines.get(i).indexOf(" ", first + 1);
-                    String lastName = lines.get(i).substring(0, first);
-                    int age = Integer.parseInt(lines.get(i).substring(first + 1, second));
-                    String gender = lines.get(i).substring(second);
-                    Human man = new Human.HumanBuilder(gender, age, lastName).build();
+                    String[] value = lines.get(i).split(" ");
+                    String lastName = value[0];
+                    int age = 0;
+                    String gender = null;
+                    if (value.length >= 2) {
+                        age = Integer.parseInt(value[1]);
+                        if (value.length >= 3) {
+                            gender = value[2];
+                        }
+                    }
+                    Human man = new Human.HumanBuilder(lastName)
+                            .setSex(gender)
+                            .setAge(age)
+                            .build();
                     list.add(man);
                 } else {
                     System.out.println("Ошибка валидации2");
@@ -109,21 +123,28 @@ public final class FillFromFile implements Fill {
         return list;
     }
 
-    private static List createBarrel(int count) throws IOException {
+    private static List<Object> createBarrel(int count) throws IOException {
         List<Object> list = new ArrayList<>();
-        String s = "src\\main\\java\\sorter\\project\\object_addition\\barrel.txt";
-        Path path = Path.of(s).toAbsolutePath();
+        Path path = Paths.get("src", "main", "resources", "files", "barrel.txt");
         List<String> lines = Files.readAllLines(path);
         int countOfError = 0;
         for (int i = 0; (i < count) && (i < lines.size()); i++) {
             if (Validation.generalValidation(lines.get(i))) {
                 if (Validation.barrelValidation(lines.get(i))) {
-                    int first = lines.get(i).indexOf(" ");
-                    int second = lines.get(i).indexOf(" ", first + 1);
-                    float volume = Float.parseFloat(lines.get(i).substring(0, first));
-                    String material = lines.get(i).substring(first + 1, second);
-                    String storedMaterial = lines.get(i).substring(second);
-                    Barrel barrel = new Barrel.BarrelBuilder(volume, storedMaterial, material).build();
+                    String[] value = lines.get(i).split(" ");
+                    float volume = Float.parseFloat(value[0]);
+                    String material = null;
+                    String storedMaterial = null;
+                    if (value.length >= 2) {
+                        material = value[1];
+                        if (value.length >= 3) {
+                            storedMaterial = value[2];
+                        }
+                    }
+                    Barrel barrel = new Barrel.BarrelBuilder(volume)
+                            .setStoredMaterial(storedMaterial)
+                            .setMaterial(material)
+                            .build();
                     list.add(barrel);
                 } else {
                     System.out.println("Ошибка валидации2");

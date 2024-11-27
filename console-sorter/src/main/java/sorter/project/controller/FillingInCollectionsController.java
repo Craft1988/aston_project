@@ -5,7 +5,6 @@ import sorter.project.service.FillFromConsole;
 import sorter.project.service.FillFromFile;
 import sorter.project.service.FillFromRandom;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -20,13 +19,13 @@ public class FillingInCollectionsController {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1:
-                if (WorkingCollection.addInCollection(new ArrayList<>())) {
+                if (!WorkingCollection.getCollection().isEmpty()) {
                     WorkingCollection.deleteCollection();
                 }
-                filling(choice);
+                filling();
                 break;
             case 2:
-                filling(choice);
+                filling();
                 break;
             case 3:
 
@@ -37,7 +36,7 @@ public class FillingInCollectionsController {
 
     }
 
-    public static void filling(int lastChoice) {
+    public static void filling() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Выберите действие:");
         System.out.println("1. Заполнить объектами Human");
@@ -73,16 +72,19 @@ public class FillingInCollectionsController {
         switch (choice) {
             case 1:
                 WorkingCollection.addInCollection(FillFromConsole.fill(lastChoice));
+                WorkingCollection.setIsSorted(false);
                 break;
             case 2:
                 System.out.println("Введите количество считываемых строк:");
                 int choiceCountFile = scanner.nextInt();
                 WorkingCollection.addInCollection(FillFromFile.fill(choiceCountFile, lastChoice));
+                WorkingCollection.setIsSorted(false);
                 break;
             case 3:
                 System.out.println("Введите количество генерируемых объектов:");
                 int choiceCountRandom = scanner.nextInt();
                 WorkingCollection.addInCollection(FillFromRandom.fill(choiceCountRandom, lastChoice));
+                WorkingCollection.setIsSorted(false);
                 break;
             case 4:
                 break;

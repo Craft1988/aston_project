@@ -5,8 +5,9 @@ import java.util.List;
 
 public final class QuickSort<T> implements SortStrategy<T> {
     @Override
-    public void sort(List<T> items, Comparator<T> comparator) {
+    public List<T> sort(List<T> items, Comparator<T> comparator) {
         quickSort(items, 0, items.size() - 1, comparator);
+        return items;
     }
 
     private void quickSort(List<T> items, int low, int high, Comparator<T> comparator) {

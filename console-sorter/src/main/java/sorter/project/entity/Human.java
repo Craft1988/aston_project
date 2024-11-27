@@ -1,15 +1,11 @@
 package sorter.project.entity;
 
-import java.util.Comparator;
-
-import sorter.project.service.interfaces.Autobuilder;
 
 public class Human {
-    private static Comparator<Human> comparator = Comparator.comparingInt(h -> h.age);
-    private String sex;
-    private int age;
-    private String surname;
 
+    private final String sex;
+    private final int age;
+    private final String surname;
 
     public Human(HumanBuilder humanBuilder) {
         this.sex = humanBuilder.sex;
@@ -17,46 +13,46 @@ public class Human {
         this.surname = humanBuilder.surname;
     }
 
-    public int getAge() {
-        return age;
-    }
 
-    public static class HumanBuilder implements Autobuilder {
+    public static class HumanBuilder {
+
         private String sex;
         private int age;
-        private String surname;
+        private final String surname;
 
-        public HumanBuilder(String sex, int age, String surname) {
-            this.sex = sex;
-            this.age = age;
+        public HumanBuilder(String surname) {
             this.surname = surname;
         }
 
-        @Override
-        public Autobuilder randomAutoset() {
-            // TODO Auto-generated method stub
-            return null;
+        public HumanBuilder setAge(int age) {
+            this.age = age;
+            return this;
         }
 
-        @Override
-        public Autobuilder fromFileAutoset() {
-            // TODO Auto-generated method stub
-            return null;
+        public HumanBuilder setSex(String sex) {
+            this.sex = sex;
+            return this;
         }
 
         public Human build() {
             return new Human(this);
         }
 
+
     }
 
-    public static Comparator<Human> getComparator() {
-        return comparator;
+    public int getAge() {
+        return age;
+    }
+
+    public String getSurname() {
+        return surname;
     }
 
     @Override
     public String toString() {
         return "Human{" + "sex='" + sex + '\'' + ", age=" + age + ", surname='" + surname + '\'' + '}';
     }
+
 
 }

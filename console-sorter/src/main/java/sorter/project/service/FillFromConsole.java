@@ -3,24 +3,23 @@ package sorter.project.service;
 import sorter.project.entity.Animal;
 import sorter.project.entity.Barrel;
 import sorter.project.entity.Human;
-import sorter.project.service.interfaces.Fill;
 import sorter.project.utils.Validation;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class FillFromConsole implements Fill {
+public class FillFromConsole{
 
-    private static Scanner console = new Scanner(System.in);
+    private static final Scanner console = new Scanner(System.in);
 
     private FillFromConsole() {
         throw new UnsupportedOperationException();
     }
 
-    static List list = new ArrayList<>();
+    static List<Object> list = new ArrayList<>();
 
-    public static List fill(String type) {
+    public static List<Object> fill(String type) {
         System.out.println("Для завершения введите \"exit\"");
         switch (type) {
             case "Human": {
@@ -50,19 +49,27 @@ public class FillFromConsole implements Fill {
         return list;
     }
 
-    private static List createAnimal() {
+    private static List<Object> createAnimal() {
         while (true) {
             String line = console.nextLine();
             if (line.equalsIgnoreCase("exit")) {
                 break;
             }
             if (Validation.generalValidation(line) && Validation.animalValidation(line)) {
-                int first = line.indexOf(" ");
-                int second = line.indexOf(" ", first + 1);
-                String types = line.substring(0, first);
-                boolean wool = Boolean.parseBoolean(line.substring(first + 1, second));
-                String eyeColor = line.substring(second);
-                Animal animal = new Animal.AnimalBuilder(types, eyeColor, wool).build();
+                String[] value = line.split(" ");
+                String types = value[0];
+                boolean wool = false;
+                String eyeColor = null;
+                if (value.length >= 2) {
+                    wool = Boolean.parseBoolean(value[1]);
+                    if (value.length >= 3) {
+                        eyeColor = value[2];
+                    }
+                }
+                Animal animal = new Animal.AnimalBuilder(types)
+                        .setEyeColor(eyeColor)
+                        .setWool(wool)
+                        .build();
                 list.add(animal);
             } else {
                 System.out.println("Не валидно");
@@ -71,19 +78,27 @@ public class FillFromConsole implements Fill {
         return list;
     }
 
-    private static List createMan() {
+    private static List<Object> createMan() {
         while (true) {
             String line = console.nextLine();
             if (line.equalsIgnoreCase("exit")) {
                 break;
             }
             if (Validation.generalValidation(line) && Validation.manValidation(line)) {
-                int first = line.indexOf(" ");
-                int second = line.indexOf(" ", first + 1);
-                String lastName = line.substring(0, first);
-                int age = Integer.parseInt(line.substring(first + 1, second));
-                String gender = line.substring(second);
-                Human man = new Human.HumanBuilder(gender, age, lastName).build();
+                String[] value = line.split(" ");
+                String lastName = value[0];
+                int age = 0;
+                String gender = null;
+                if (value.length >= 2) {
+                    age = Integer.parseInt(value[1]);
+                    if (value.length >= 3) {
+                        gender = value[2];
+                    }
+                }
+                Human man = new Human.HumanBuilder(lastName)
+                        .setAge(age)
+                        .setSex(gender)
+                        .build();
                 list.add(man);
             } else {
                 System.out.println("Не валидно");
@@ -92,19 +107,27 @@ public class FillFromConsole implements Fill {
         return list;
     }
 
-    private static List createBarrel() {
+    private static List<Object> createBarrel() {
         while (true) {
             String line = console.nextLine();
             if (line.equalsIgnoreCase("exit")) {
                 break;
             }
             if (Validation.generalValidation(line) && Validation.barrelValidation(line)) {
-                int first = line.indexOf(" ");
-                int second = line.indexOf(" ", first + 1);
-                float volume = Float.parseFloat(line.substring(0, first));
-                String material = line.substring(first + 1, second);
-                String storedMaterial = line.substring(second);
-                Barrel barrel = new Barrel.BarrelBuilder(volume, storedMaterial, material).build();
+                String[] value = line.split(" ");
+                float volume = Float.parseFloat(value[0]);
+                String material = null;
+                String storedMaterial = null;
+                if (value.length >= 2) {
+                    material = value[1];
+                    if (value.length >= 3) {
+                        storedMaterial = value[2];
+                    }
+                }
+                Barrel barrel = new Barrel.BarrelBuilder(volume)
+                        .setMaterial(material)
+                        .setStoredMaterial(storedMaterial)
+                        .build();
                 list.add(barrel);
             } else {
                 System.out.println("Не валидно");

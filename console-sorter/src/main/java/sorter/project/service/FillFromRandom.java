@@ -3,32 +3,18 @@ package sorter.project.service;
 import sorter.project.entity.Animal;
 import sorter.project.entity.Barrel;
 import sorter.project.entity.Human;
-import sorter.project.entity.enums.AnimalEyeColor;
-import sorter.project.entity.enums.AnimalWithWool;
-import sorter.project.entity.enums.AnimalWithoutWool;
-import sorter.project.entity.enums.Materials;
-import sorter.project.entity.enums.MenLastName;
-import sorter.project.entity.enums.StoredMaterial;
-import sorter.project.entity.enums.WomenLastName;
-import sorter.project.service.interfaces.Fill;
+import sorter.project.entity.dataForRandom.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public final class FillFromRandom implements Fill {
+public final class FillFromRandom {
     private final static Random rand = new Random();
-    private final static MenLastName[] menLastName = MenLastName.values();
-    private final static WomenLastName[] womenLastName = WomenLastName.values();
-    private final static AnimalWithoutWool[] animalWithoutWools = AnimalWithoutWool.values();
-    private final static AnimalWithWool[] animalWithWools = AnimalWithWool.values();
-    private final static AnimalEyeColor[] animalEyeColors = AnimalEyeColor.values();
-    private final static StoredMaterial[] storedMaterial = StoredMaterial.values();
-    private final static Materials[] materials = Materials.values();
-    private static List list = new ArrayList<>();
+    private static List<Object> list = new ArrayList<>();
 
 
-    public static List fill(int count, String type) {
+    public static List<Object> fill(int count, String type) {
         switch (type) {
             case "Human": {
                 list = createMan(count);
@@ -55,48 +41,52 @@ public final class FillFromRandom implements Fill {
 
     private static String randomLastName(String gender) {
         if (gender.equals("man")) {
-            return menLastName[rand.nextInt(menLastName.length)].toString();
+            return DataForHumanRandom.mansSurname.get(rand.nextInt(DataForHumanRandom.mansSurname.size()));
         }
-        return womenLastName[rand.nextInt(womenLastName.length)].toString();
+        return DataForHumanRandom.womansSurname.get(rand.nextInt(DataForHumanRandom.womansSurname.size()));
     }
 
     private static String randomTypeOfAnimal(boolean wool) {
         if (wool) {
-            return animalWithWools[rand.nextInt(animalWithWools.length)].toString();
+            return DataForAnimalRandom.animalWithWool.get(rand.nextInt(DataForAnimalRandom.animalWithWool.size()));
         }
-        return animalWithoutWools[rand.nextInt(animalWithoutWools.length)].toString();
+        return DataForAnimalRandom.animalWithoutWool.get(rand.nextInt(DataForAnimalRandom.animalWithoutWool.size()));
     }
 
-    private static List createAnimal(int count) {
+    private static List<Object> createAnimal(int count) {
         List<Object> list = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             boolean wool = rand.nextBoolean();
             String types = randomTypeOfAnimal(wool);
-            Animal animal = new Animal.AnimalBuilder(types, animalEyeColors[rand.nextInt(animalEyeColors.length)]
-                    .toString(), wool)
+            Animal animal = new Animal.AnimalBuilder(types)
+                    .setEyeColor(DataForAnimalRandom.animalEyeColor.get(rand.nextInt(DataForAnimalRandom.animalEyeColor.size())))
+                    .setWool(wool)
                     .build();
             list.add(animal);
         }
         return list;
     }
 
-    private static List createMan(int count) {
+    private static List<Object> createMan(int count) {
         List<Object> list = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             String gender = randomGender();
             String lastName = randomLastName(gender);
-            Human man = new Human.HumanBuilder(gender, rand.nextInt(70), lastName).build();
+            Human man = new Human.HumanBuilder(lastName)
+                    .setAge(rand.nextInt(70))
+                    .setSex(gender)
+                    .build();
             list.add(man);
         }
         return list;
     }
 
-    private static List createBarrel(int count) {
+    private static List<Object> createBarrel(int count) {
         List<Object> list = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            Barrel barrel = new Barrel.BarrelBuilder(rand.nextFloat(100),
-                    storedMaterial[rand.nextInt(storedMaterial.length)].toString(),
-                    materials[rand.nextInt(materials.length)].toString())
+            Barrel barrel = new Barrel.BarrelBuilder(rand.nextFloat(100))
+                    .setMaterial(DataForBarrelRandom.materials.get(rand.nextInt(DataForBarrelRandom.materials.size())))
+                    .setStoredMaterial(DataForBarrelRandom.storedMaterials.get(rand.nextInt(DataForBarrelRandom.storedMaterials.size())))
                     .build();
             list.add(barrel);
         }
