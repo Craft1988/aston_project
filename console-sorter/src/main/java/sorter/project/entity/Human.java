@@ -5,6 +5,7 @@ import lombok.Getter;
 public class Human {
 
     private final String sex;
+    @Getter
     private final int age;
     @Getter
     private final String surname;

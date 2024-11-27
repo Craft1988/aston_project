@@ -5,28 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ede42bf1-a5e8-4393-916e-5901b1fc283e" name="Changes" comment="additional_age_validation_and_volume_validation">
-      <change afterPath="$PROJECT_DIR$/src/main/java/sorter/project/entity/dataForRandom/DataForAnimalRandom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/sorter/project/entity/dataForRandom/DataForBarrelRandom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/sorter/project/entity/dataForRandom/DataForHumanRandom.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/sorter/project/controller/ExtraSortTheCollectionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/controller/BinarySearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/controller/BinarySearchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/controller/FillingInCollectionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/controller/FillingInCollectionsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/controller/SortTheCollectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/controller/SortTheCollectionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Barrel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Barrel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/MainClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/MainClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Human.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/entity/Human.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/WorkingCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/entity/WorkingCollection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/enums/AnimalEyeColor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/enums/AnimalWithWool.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/enums/AnimalWithoutWool.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/enums/Materials.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/enums/MenLastName.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/enums/StoredMaterial.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/entity/enums/WomenLastName.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/service/FillFromConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/service/FillFromConsole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/service/FillFromFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/service/FillFromFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/service/FillFromRandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/service/FillFromRandom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sorter/project/utils/Validation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorter/project/utils/Validation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
