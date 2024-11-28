@@ -21,6 +21,8 @@ public class FillingInCollectionsController {
                 if (!WorkingCollection.getCollection().isEmpty()) {
                     WorkingCollection.deleteCollection();
                 }
+                WorkingCollection.setIsSorted(false);
+                WorkingCollection.setDetectedObject(-1);
                 filling();
                 break;
             case 2:

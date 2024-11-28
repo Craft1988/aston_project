@@ -14,12 +14,20 @@ public class FilesController {
         System.out.println("1. Записать коллекцию");
         System.out.println("2. Записать индекс найденного элемента");
         int type = scanner.nextInt();
-        switch (type){
+        if (type == 1 && WorkingCollection.getCollection().isEmpty()) {
+            System.out.println("Коллекции нет");
+            type = 3;
+        }
+        if (type == 2 && (WorkingCollection.getDetectedObject() == -1 || WorkingCollection.getDetectedObject() == 0)) {
+            System.out.println("Объект не был найден");
+            type = 3;
+        }
+        switch (type) {
             case 1:
-                Writer.writeCollectionToFile(filename,WorkingCollection.getCollection());
+                Writer.writeCollectionToFile(filename, WorkingCollection.getCollection());
                 break;
             case 2:
-                Writer.writeIndexToFile(filename,WorkingCollection.getDetectedObject());
+                Writer.writeIndexToFile(filename, WorkingCollection.getDetectedObject());
                 break;
             default:
                 break;
