@@ -9,14 +9,14 @@ import java.util.Scanner;
 
 
 public class FillingInCollectionsController {
-
+    private static final Scanner sc = new Scanner(System.in);
     public static void fillingNewOrOld() {
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
         System.out.println("Выберите действие:");
         System.out.println("1. Заполнить новую коллекцию");
         System.out.println("2. Заполнить существующую коллекцию");
         System.out.println("3. На главную");
-        int choice = scanner.nextInt();
+        int choice = sc.nextInt();
         switch (choice) {
             case 1:
                 if (!WorkingCollection.getCollection().isEmpty()) {
@@ -37,13 +37,12 @@ public class FillingInCollectionsController {
     }
 
     public static void filling() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Выберите действие:");
         System.out.println("1. Заполнить объектами Human");
         System.out.println("2. Заполнить объектами Animal");
         System.out.println("3. Заполнить объектами Barrel");
         System.out.println("4. На главную");
-        int choice = scanner.nextInt();
+        int choice = sc.nextInt();
         switch (choice) {
             case 1:
                 fillingType("Human");
@@ -62,13 +61,12 @@ public class FillingInCollectionsController {
     }
 
     private static void fillingType(String lastChoice) {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Выберите действие:");
         System.out.println("1. Заполнить из консоли");
         System.out.println("2. Заполнить из файла");
         System.out.println("3. Заполнить случайными значениями");
         System.out.println("4. На главную");
-        int choice = scanner.nextInt();
+        int choice = sc.nextInt();
         switch (choice) {
             case 1:
                 WorkingCollection.addInCollection(FillFromConsole.fill(lastChoice));
@@ -76,13 +74,13 @@ public class FillingInCollectionsController {
                 break;
             case 2:
                 System.out.println("Введите количество считываемых строк:");
-                int choiceCountFile = scanner.nextInt();
+                int choiceCountFile = sc.nextInt();
                 WorkingCollection.addInCollection(FillFromFile.fill(choiceCountFile, lastChoice));
                 WorkingCollection.setIsSorted(false);
                 break;
             case 3:
                 System.out.println("Введите количество генерируемых объектов:");
-                int choiceCountRandom = scanner.nextInt();
+                int choiceCountRandom = sc.nextInt();
                 WorkingCollection.addInCollection(FillFromRandom.fill(choiceCountRandom, lastChoice));
                 WorkingCollection.setIsSorted(false);
                 break;
