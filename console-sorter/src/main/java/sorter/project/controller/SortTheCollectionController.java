@@ -144,6 +144,4 @@ public class SortTheCollectionController {
         if (!third.isEmpty()) result.addAll(third);
         return result;
     }
-
-
 }

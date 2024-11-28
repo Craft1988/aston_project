@@ -27,12 +27,13 @@ public class BinarySearchController {
         if (choice == 4) {
             return;
         }
-        String detected;
+
         int attempts = 0;
         int maxAttempts = 5;
+        String detected = scanner.nextLine();
+
         do {
             System.out.println("Введите искомый объект");
-            scanner.next();
             detected = scanner.nextLine();
 
             if (Validation.generalValidation(detected) &&
@@ -44,7 +45,7 @@ public class BinarySearchController {
                 System.out.println("не валидно");
                 attempts++;
             }
-            if (attempts==maxAttempts){
+            if (attempts == maxAttempts) {
                 System.out.println("превышено максимальное количество попыток");
                 return;
             }
@@ -87,7 +88,8 @@ public class BinarySearchController {
                         .setSex(gender)
                         .build();
                 comparator = Comparator.comparing(o -> ((Human) o).getSurname());
-                WorkingCollection.setDetectedObject(binarySearchHuman.search(quickSortHuman.sort(SortTheCollectionController.humanCollection(WorkingCollection.getCollection()),
+                WorkingCollection.setDetectedObject(binarySearchHuman.search(quickSortHuman.sort(
+                        SortTheCollectionController.humanCollection(WorkingCollection.getCollection()),
                         comparator), target, comparator) + first);
                 break;
             case 2:
@@ -113,7 +115,8 @@ public class BinarySearchController {
                         .setWool(wool)
                         .build();
                 comparator = Comparator.comparing(o -> ((Animal) o).getType());
-                WorkingCollection.setDetectedObject(binarySearchAnimal.search(quickSortAnimal.sort(SortTheCollectionController.animalCollection(WorkingCollection.getCollection()),
+                WorkingCollection.setDetectedObject(binarySearchAnimal.search(quickSortAnimal.sort(
+                        SortTheCollectionController.animalCollection(WorkingCollection.getCollection()),
                         comparator), target, comparator) + first);
                 break;
             case 3:
@@ -139,13 +142,12 @@ public class BinarySearchController {
                         .setStoredMaterial(storedMaterial)
                         .build();
                 comparator = Comparator.comparingDouble(o -> ((Barrel) o).getVolume());
-                WorkingCollection.setDetectedObject(binarySearchBarrel.search(quickSortBarrel.sort(SortTheCollectionController.barrelCollection(WorkingCollection.getCollection()),
+                WorkingCollection.setDetectedObject(binarySearchBarrel.search(quickSortBarrel.sort
+                        (SortTheCollectionController.barrelCollection(WorkingCollection.getCollection()),
                         comparator), target, comparator) + first);
                 break;
             default:
                 System.out.println("Неверный выбор!");
         }
-
-
     }
 }

@@ -1,6 +1,5 @@
 package sorter.project.entity;
 
-
 public class Human {
 
     private final String sex;
@@ -12,7 +11,6 @@ public class Human {
         this.age = humanBuilder.age;
         this.surname = humanBuilder.surname;
     }
-
 
     public static class HumanBuilder {
 
@@ -37,8 +35,6 @@ public class Human {
         public Human build() {
             return new Human(this);
         }
-
-
     }
 
     public int getAge() {
@@ -53,6 +49,4 @@ public class Human {
     public String toString() {
         return "Human{" + "sex='" + sex + '\'' + ", age=" + age + ", surname='" + surname + '\'' + '}';
     }
-
-
 }

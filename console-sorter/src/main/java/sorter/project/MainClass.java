@@ -1,7 +1,5 @@
 package sorter.project;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import sorter.project.controller.*;
@@ -51,8 +49,5 @@ public class MainClass {
                     System.out.println("Неверный выбор!");
             }
         }
-
     }
-
-
 }

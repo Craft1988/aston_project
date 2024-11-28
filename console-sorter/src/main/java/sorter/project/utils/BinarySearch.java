@@ -16,4 +16,3 @@ public final class BinarySearch<T> {
         return -1;
     }
 }
-
