@@ -1,8 +1,6 @@
 package sorter.project.entity;
 
-
 public class Animal {
-
 
     private final String type;
     private final String eyeColor;
@@ -37,8 +35,6 @@ public class Animal {
         public Animal build() {
             return new Animal(this);
         }
-
-
     }
 
     public String getType() {
@@ -49,5 +45,4 @@ public class Animal {
     public String toString() {
         return "Animal{" + "type='" + type + '\'' + ", eyeColor='" + eyeColor + '\'' + ", wool=" + wool + '}';
     }
-
 }

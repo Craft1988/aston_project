@@ -12,7 +12,7 @@ public class FilesController {
         String filename = scanner.nextLine();
         System.out.println("Выберите действие:");
         System.out.println("1. Записать коллекцию");
-        System.out.println("2. Записать индекс найденого элемента");
+        System.out.println("2. Записать индекс найденного элемента");
         int type = scanner.nextInt();
         switch (type){
             case 1:

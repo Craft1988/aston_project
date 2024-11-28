@@ -7,7 +7,6 @@ import sorter.project.service.FillFromRandom;
 
 import java.util.Scanner;
 
-
 public class FillingInCollectionsController {
     private static final Scanner sc = new Scanner(System.in);
     public static void fillingNewOrOld() {
@@ -33,7 +32,6 @@ public class FillingInCollectionsController {
             default:
                 System.out.println("Неверный выбор!");
         }
-
     }
 
     public static void filling() {

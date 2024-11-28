@@ -1,13 +1,10 @@
 package sorter.project.entity;
 
-
 public class Barrel {
-
 
     private final double volume;
     private final String storedMaterial;
     private final String material;
-
 
     public Barrel(BarrelBuilder barrelBuilder) {
         this.volume = barrelBuilder.volume;
@@ -50,6 +47,4 @@ public class Barrel {
         return "Barrel{" + "volume=" + volume + ", storedMaterial='" + storedMaterial + '\'' + ", material='" + material
                 + '\'' + '}';
     }
-
-
 }

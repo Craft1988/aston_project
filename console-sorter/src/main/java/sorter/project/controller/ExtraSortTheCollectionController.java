@@ -5,7 +5,6 @@ import sorter.project.utils.InsertionSort;
 import sorter.project.utils.QuickSort;
 import sorter.project.utils.SortStrategy;
 import sorter.project.entity.Human;
-import sorter.project.entity.Animal;
 import sorter.project.entity.Barrel;
 
 import java.util.*;
@@ -113,6 +112,4 @@ public class ExtraSortTheCollectionController {
         if (!second.isEmpty()) result.addAll(second);
         return result;
     }
-
-
 }

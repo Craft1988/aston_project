@@ -1,14 +1,12 @@
 package sorter.project.entity;
 
-import lombok.Getter;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class WorkingCollection {
     private static final List<Object> list = new ArrayList<>();
     private static boolean isSorted = false;
-    @Getter
+
     private static int detectedObject;
 
     private WorkingCollection() {
@@ -36,5 +34,9 @@ public class WorkingCollection {
 
     public static List<Object> getCollection() {
         return new ArrayList<>(list);
+    }
+
+    public static int getDetectedObject() {
+        return detectedObject;
     }
 }

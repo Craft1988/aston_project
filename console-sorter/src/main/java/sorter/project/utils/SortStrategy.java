@@ -1,6 +1,5 @@
 package sorter.project.utils;
 
-
 import java.util.Comparator;
 import java.util.List;
 
